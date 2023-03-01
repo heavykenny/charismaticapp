@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">charismaticapp</string>
+
+    <string name="welcome1">Welcome1</string>
+    <string name="welcome2">Welcome2</string>
+    <string name="welcome3">Welcome3</string>
+    <string name="onboarding1">onboarding1</string>
+    <string name="onboarding2">onboarding2</string>
+    <string name="onboarding3">onboarding3</string>
+</resources>
