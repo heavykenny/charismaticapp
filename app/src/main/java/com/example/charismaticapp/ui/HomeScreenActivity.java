@@ -1,8 +1,10 @@
-package com.example.charismaticapp;
+package com.example.charismaticapp.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.charismaticapp.R;
 
 public class HomeScreenActivity extends AppCompatActivity {
 

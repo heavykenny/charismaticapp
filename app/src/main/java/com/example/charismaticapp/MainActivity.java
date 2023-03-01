@@ -13,6 +13,9 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.charismaticapp.adapters.OnboardingAdapter;
 import com.example.charismaticapp.helpers.SaveState;
+import com.example.charismaticapp.ui.HomeScreenActivity;
+import com.example.charismaticapp.ui.LoginActivity;
+import com.example.charismaticapp.ui.RegisterActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 nextCard.setOnClickListener(view -> {
                     saveState.setState(1);
-                    Intent i = new Intent(MainActivity.this, HomeScreenActivity.class);
+                    Intent i = new Intent(MainActivity.this, LoginActivity.class);
                     startActivity(i);
                     finish();
                 });
@@ -64,9 +67,9 @@ public class MainActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.slider);
 
         dotsFunction(0);
-        saveState = new SaveState(MainActivity.this,"OB");
-        if (saveState.getState() == 1){
-            Intent i = new Intent(MainActivity.this, HomeScreenActivity.class);
+        saveState = new SaveState(MainActivity.this, "OB");
+        if (saveState.getState() == 1) {
+            Intent i = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(i);
             finish();
         }
@@ -77,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
         nextCard.setOnClickListener(v -> viewPager.setCurrentItem(currentPosition + 1, true));
         viewPager.setOnPageChangeListener(onPageChangeListener);
+
     }
 
     private void dotsFunction(int pos) {
