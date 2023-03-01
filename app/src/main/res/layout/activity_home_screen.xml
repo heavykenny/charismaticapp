@@ -1,18 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.HomeScreenActivity"
+    android:background="@color/hunter_green"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".ui.HomeScreenActivity">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Home Page"
-        android:textSize="25dp"
-        />
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="Welcome, Kenny!"
+        android:textSize="30sp" />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:columnCount="2"
+        android:orientation="horizontal"
+        android:rowCount="2"
+        android:useDefaultMargins="true">
+
+        <Button
+            style="@style/button_homepage"
+            android:drawableTop="@drawable/speaker_notes"
+            android:text="@string/notes" />
+
+        <Button
+            style="@style/button_homepage"
+            android:drawableTop="@drawable/quiz"
+            android:text="@string/quiz" />
+
+        <Button
+            style="@style/button_homepage"
+            android:drawableTop="@drawable/manage_accounts"
+            android:text="@string/settings" />
+
+        <Button
+            style="@style/button_homepage"
+            android:drawableTop="@drawable/more_vert"
+            android:text="@string/others" />
+
+
+    </GridLayout>
 </LinearLayout>

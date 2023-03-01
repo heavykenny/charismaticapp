@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="button_homepage">
+        <item name="android:textSize">24sp</item>
+        <item name="android:paddingTop">110dp</item>
+        <item name="android:paddingBottom">110dp</item>
+        <item name="android:fontFamily">sans-serif-condensed-light</item>
+        <item name="android:background">@drawable/rounded_button</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:layout_rowWeight">1</item>
+    </style>
+</resources>

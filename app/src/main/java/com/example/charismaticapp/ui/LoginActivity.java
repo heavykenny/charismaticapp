@@ -48,4 +48,11 @@ public class LoginActivity extends AppCompatActivity {
         txtSignedUp.setText(spannableString);
         txtSignedUp.setMovementMethod(LinkMovementMethod.getInstance());
     }
+
+    public void userLogin(View view) {
+        Intent intent = new Intent(LoginActivity.this, HomeScreenActivity.class);
+        // REFERENCE - https://stackoverflow.com/a/39078856/9332871
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(intent);
+    }
 }

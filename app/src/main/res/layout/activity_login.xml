@@ -16,7 +16,7 @@
         android:layout_marginBottom="40dp"
         android:fontFamily="sans-serif-condensed-light"
         android:gravity="center"
-        android:text="get started here !"
+        android:text="@string/get_started_here"
         android:textAllCaps="true"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:fontFamily="sans-serif-condensed-light"
-        android:hint="Enter Email Address"
+        android:hint="@string/enter_email_address"
         android:inputType="textEmailAddress" />
 
     <EditText
@@ -46,17 +46,18 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:fontFamily="sans-serif-condensed-light"
-        android:hint="Enter Password"
+        android:hint="@string/enter_password"
         android:inputType="textPassword" />
 
     <Button
+        android:onClick="userLogin"
         android:id="@+id/btnLogin"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@drawable/rounded_button"
         android:fontFamily="sans-serif-condensed"
-        android:text="Login" />
+        android:text="@string/login" />
 
     <TextView
         android:id="@+id/txtSignedUp"
@@ -68,7 +69,8 @@
         android:text="@string/account_register"
         android:textAllCaps="true"
         android:textSize="15sp"
-        android:clickable="true"/>
+        android:clickable="true"
+        />
 
     <TextView
         android:layout_width="match_parent"
