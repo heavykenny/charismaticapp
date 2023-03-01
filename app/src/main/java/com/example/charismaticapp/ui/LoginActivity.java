@@ -29,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View widget) {
                 // Handle click event
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                // REFERENCE - https://stackoverflow.com/a/39078856/9332871
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
             }
