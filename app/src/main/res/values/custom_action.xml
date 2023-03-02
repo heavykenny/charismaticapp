@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CustomActionBar" parent="@style/Theme.AppCompat">
+        <item name="android:titleTextStyle">@style/CustomTitleTextStyle</item>
+        <item name="android:background">@color/hunter_green</item>
+    </style>
+
+    <style name="CustomTitleTextStyle">
+        <item name="android:textColor">@color/hunter_green</item>
+    </style>
+
+</resources>
