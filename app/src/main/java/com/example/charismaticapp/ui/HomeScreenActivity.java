@@ -22,4 +22,11 @@ public class HomeScreenActivity extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
     }
+
+    public void showQuizActivity(View view) {
+        Intent intent = new Intent(HomeScreenActivity.this, QuizActivity.class);
+        // REFERENCE - https://stackoverflow.com/a/39078856/9332871
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(intent);
+    }
 }

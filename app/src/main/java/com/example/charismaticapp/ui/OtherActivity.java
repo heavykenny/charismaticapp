@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.charismaticapp.R;
 import com.example.charismaticapp.adapters.OtherPageData;
-import com.example.charismaticapp.adapters.RecyclerViewAdapter;
+import com.example.charismaticapp.adapters.OtherPageRecyclerViewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,7 @@ public class OtherActivity extends AppCompatActivity {
 
         List<OtherPageData> data = fill_with_data();
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(data, getApplication());
+        OtherPageRecyclerViewAdapter adapter = new OtherPageRecyclerViewAdapter(data, getApplication());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

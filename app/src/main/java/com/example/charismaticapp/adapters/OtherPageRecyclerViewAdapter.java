@@ -17,13 +17,13 @@ import com.example.charismaticapp.ui.OtherActivity;
 import java.util.List;
 
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+public class OtherPageRecyclerViewAdapter extends RecyclerView.Adapter<OtherPageRecyclerViewAdapter.ViewHolder> {
 
     List<OtherPageData> list;
     Context context;
     OtherActivity otherActivity = new OtherActivity();
 
-    public RecyclerViewAdapter(List<OtherPageData> data, Application application) {
+    public OtherPageRecyclerViewAdapter(List<OtherPageData> data, Application application) {
         this.list = data;
         this.context = application;
     }
