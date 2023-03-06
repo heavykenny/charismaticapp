@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="button_calculator">
+        <item name="android:fontFamily">sans-serif-condensed-light</item>
+        <item name="android:background">@color/yellow_green</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_rowWeight">1</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:textSize">40dp</item>
+        <item name="android:onClick">ButtonClick</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+    </style>
+</resources>

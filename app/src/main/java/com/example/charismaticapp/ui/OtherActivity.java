@@ -1,8 +1,8 @@
 package com.example.charismaticapp.ui;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,7 +24,6 @@ public class OtherActivity extends AppCompatActivity {
         setContentView(R.layout.activity_other);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Other Applications");
 
-
         List<OtherPageData> data = fill_with_data();
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(data, getApplication());
@@ -35,13 +34,22 @@ public class OtherActivity extends AppCompatActivity {
 
     public List<OtherPageData> fill_with_data() {
         List<OtherPageData> data = new ArrayList<>();
-        data.add(new OtherPageData("Calculator App", R.color.yellow_green));
-        data.add(new OtherPageData("Background Changer", R.color.yellow_green));
-        data.add(new OtherPageData("Dice Roller", R.color.yellow_green));
+        data.add(new OtherPageData("Calculator App", R.drawable.calculate));
+        data.add(new OtherPageData("Background Changer", R.drawable.wallpaper));
+        data.add(new OtherPageData("Dice Roller", R.drawable.casino));
         return data;
     }
 
-    public void openOtherActivityApplication(View view) {
+    public void openOtherActivity(String itemName, Context context) {
 
+        switch (itemName) {
+            case "Calculator App":
+                Intent intent = new Intent(context, CalculatorActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+                break;
+            default:
+                break;
+        }
     }
 }

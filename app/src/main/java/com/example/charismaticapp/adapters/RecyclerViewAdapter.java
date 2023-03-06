@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.charismaticapp.R;
+import com.example.charismaticapp.ui.OtherActivity;
 
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     List<OtherPageData> list;
     Context context;
+    OtherActivity otherActivity = new OtherActivity();
 
     public RecyclerViewAdapter(List<OtherPageData> data, Application application) {
         this.list = data;
@@ -40,6 +42,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.itemImage.setImageResource(list.get(position).imageId);
         holder.txtTitle.setText(list.get(position).name);
 
+        // Set the onClickListener for itemImage and txtTitle
+        holder.itemImage.setOnClickListener(v -> {
+            // Retrieve the data for the clicked itemImage
+            String itemName = list.get(holder.getLayoutPosition()).name;
+            otherActivity.openOtherActivity(itemName, context);
+
+        });
+
+        holder.txtTitle.setOnClickListener(v -> {
+            // Retrieve the data for the clicked txtTitle
+            String itemName = list.get(holder.getLayoutPosition()).name;
+            otherActivity.openOtherActivity(itemName, context);
+        });
     }
 
     @Override
@@ -47,10 +62,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return list.size();
     }
 
-
     // Provide a direct reference to each of the views within a data item
     // Used to cache the views within the item layout for fast access
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
         public TextView txtTitle;
@@ -65,6 +79,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
             itemImage = itemView.findViewById(R.id.itemImage);
             txtTitle = itemView.findViewById(R.id.txtTitle);
+
+            // Set onClickListener for the whole item view
+            itemView.setOnClickListener(this);
+        }
+
+        // Handle onClick events for the whole item view
+        @Override
+        public void onClick(View v) {
+            // Retrieve the data for the clicked item
+            int position = getBindingAdapterPosition();
+            String itemName = list.get(position).name;
+            otherActivity.openOtherActivity(itemName, context);
         }
     }
 }

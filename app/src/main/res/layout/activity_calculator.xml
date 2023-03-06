@@ -1,0 +1,127 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/asparagus"
+    android:orientation="vertical"
+    tools:context=".ui.CalculatorActivity">
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/txtViewDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text=""
+            android:textSize="50sp" />
+    </HorizontalScrollView>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:columnCount="4"
+        android:orientation="horizontal"
+        android:rowCount="5">
+
+        <Button
+            android:id="@+id/clearBtn"
+            style="@style/button_calculator"
+            android:layout_columnSpan="4"
+            android:background="@color/asparagus"
+            android:text="CLEAR" />
+
+        <Button
+            android:id="@+id/btn7"
+            style="@style/button_calculator"
+            android:text="7" />
+
+        <Button
+            android:id="@+id/btn8"
+            style="@style/button_calculator"
+            android:text="8" />
+
+        <Button
+            android:id="@+id/btn9"
+            style="@style/button_calculator"
+            android:text="9" />
+
+        <Button
+            android:id="@+id/btnDivide"
+            style="@style/button_calculator"
+            android:background="@color/asparagus"
+            android:text="/" />
+
+        <Button
+            android:id="@+id/btn4"
+            style="@style/button_calculator"
+            android:text="4" />
+
+        <Button
+            android:id="@+id/btn5"
+            style="@style/button_calculator"
+            android:text="5" />
+
+        <Button
+            android:id="@+id/btn6"
+            style="@style/button_calculator"
+            android:text="6" />
+
+        <Button
+            android:id="@+id/btnMultiply"
+            style="@style/button_calculator"
+            android:background="@color/asparagus"
+            android:text="*" />
+
+        <Button
+            android:id="@+id/btn1"
+            style="@style/button_calculator"
+            android:text="1" />
+
+        <Button
+            android:id="@+id/btn2"
+            style="@style/button_calculator"
+            android:text="2" />
+
+        <Button
+            android:id="@+id/btn3"
+            style="@style/button_calculator"
+            android:text="3" />
+
+        <Button
+            android:id="@+id/btnMinus"
+            style="@style/button_calculator"
+            android:background="@color/asparagus"
+            android:text="-" />
+
+        <Button
+            android:id="@+id/btnPeriod"
+            style="@style/button_calculator"
+            android:background="@color/asparagus"
+            android:text="." />
+
+        <Button
+            android:id="@+id/btn0"
+            style="@style/button_calculator"
+            android:text="0" />
+
+        <Button
+            android:id="@+id/btnEquals"
+            style="@style/button_calculator"
+            android:background="@color/asparagus"
+            android:text="=" />
+
+        <Button
+            android:id="@+id/btnAddition"
+            style="@style/button_calculator"
+            android:background="@color/asparagus"
+            android:text="+" />
+    </GridLayout>
+
+</LinearLayout>
