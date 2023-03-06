@@ -76,6 +76,16 @@ public class CalculatorActivity extends AppCompatActivity {
             displayTotal += btn.getText();
         }
 
-        displayScreen.setText(displayTotal);
+        displayScreen.setText(removeTrailingZero(displayTotal));
+    }
+
+
+    public static String removeTrailingZero(String str) {
+        if (str.endsWith(".0")) {
+            // remove the last .0 from the number
+            return str.substring(0, str.length() - 2);
+        } else {
+            return str;
+        }
     }
 }
