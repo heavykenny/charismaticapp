@@ -28,12 +28,12 @@
         android:useDefaultMargins="true">
 
         <Button
-            android:onClick="showQuizActivity"
             style="@style/button_homepage"
             android:drawableTop="@drawable/speaker_notes"
             android:text="@string/notes" />
 
         <Button
+            android:onClick="showQuizActivity"
             style="@style/button_homepage"
             android:drawableTop="@drawable/quiz"
             android:text="@string/quiz" />

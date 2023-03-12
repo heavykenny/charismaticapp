@@ -88,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
         dotsLayout.removeAllViews();
 
         for (int i = 0; i < dots.length; i++) {
-
             dots[i] = new TextView(this);
             dots[i].setText(Html.fromHtml("•"));
             dots[i].setTextColor(getColor(R.color.white));   //this is the non selection color

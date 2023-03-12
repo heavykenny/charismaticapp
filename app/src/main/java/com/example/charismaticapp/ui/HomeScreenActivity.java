@@ -24,7 +24,7 @@ public class HomeScreenActivity extends AppCompatActivity {
     }
 
     public void showQuizActivity(View view) {
-        Intent intent = new Intent(HomeScreenActivity.this, QuizActivity.class);
+        Intent intent = new Intent(view.getContext(), QuizActivity.class);
         // REFERENCE - https://stackoverflow.com/a/39078856/9332871
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
