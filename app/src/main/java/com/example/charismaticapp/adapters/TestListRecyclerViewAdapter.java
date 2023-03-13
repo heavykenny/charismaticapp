@@ -11,12 +11,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.charismaticapp.R;
+import com.example.charismaticapp.ui.OtherActivity;
+import com.example.charismaticapp.ui.StartQuestionActivity;
 
 import java.util.List;
 
 public class TestListRecyclerViewAdapter extends RecyclerView.Adapter<TestListRecyclerViewAdapter.ViewHolder> {
     List<TestListData> list;
     Context context;
+    StartQuestionActivity startQuestionActivity = new StartQuestionActivity();
 
     public TestListRecyclerViewAdapter(List<TestListData> data, Application application) {
         this.list = data;
@@ -55,7 +58,8 @@ public class TestListRecyclerViewAdapter extends RecyclerView.Adapter<TestListRe
         @Override
         public void onClick(View v) {
             int position = getBindingAdapterPosition();
-
+            int itemName = list.get(position).count;
+            startQuestionActivity.startQuiz(itemName, context);
         }
     }
 }
