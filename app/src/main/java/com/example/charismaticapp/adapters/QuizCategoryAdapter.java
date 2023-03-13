@@ -1,6 +1,5 @@
 package com.example.charismaticapp.adapters;
 
-import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +10,14 @@ import com.example.charismaticapp.R;
 
 import java.util.List;
 
-public class QuizCategoryAdapter extends BaseAdapter {
-    public QuizCategoryAdapter(List<QuizCategory> quizCategoryList) {
-        this.quizCategoryList = quizCategoryList;
-    }
+public class QuizCategoryAdapter extends BaseAdapter implements View.OnClickListener {
+    private final List<QuizCategory> quizCategoryList;
+    private final OnQuizCategoryClickListener onQuizCategoryClickListener;
 
-    private List<QuizCategory> quizCategoryList;
+    public QuizCategoryAdapter(List<QuizCategory> quizCategoryList, OnQuizCategoryClickListener onQuizCategoryClickListener) {
+        this.quizCategoryList = quizCategoryList;
+        this.onQuizCategoryClickListener = onQuizCategoryClickListener;
+    }
 
     @Override
     public int getCount() {
@@ -44,6 +45,22 @@ public class QuizCategoryAdapter extends BaseAdapter {
         TextView testCount = v.findViewById(R.id.txtViewTestCount);
         catName.setText(quizCategoryList.get(position).getName());
         testCount.setText(quizCategoryList.get(position).getNumbers() + " tests");
+        v.setTag(position);
+        v.setOnClickListener(this);
         return v;
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        // Get the position of the clicked item
+        int position = (Integer) view.getTag();
+        // Call the onQuizCategoryClickListener with the clicked item
+        onQuizCategoryClickListener.onQuizCategoryClick(quizCategoryList.get(position));
+    }
+
+    // Interface for handling quiz category clicks
+    public interface OnQuizCategoryClickListener {
+        void onQuizCategoryClick(QuizCategory quizCategory);
     }
 }

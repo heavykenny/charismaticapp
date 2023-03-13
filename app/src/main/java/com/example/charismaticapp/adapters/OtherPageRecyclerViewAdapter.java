@@ -47,7 +47,6 @@ public class OtherPageRecyclerViewAdapter extends RecyclerView.Adapter<OtherPage
             // Retrieve the data for the clicked itemImage
             String itemName = list.get(holder.getLayoutPosition()).name;
             otherActivity.openOtherActivity(itemName, context);
-
         });
 
         holder.txtTitle.setOnClickListener(v -> {
