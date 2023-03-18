@@ -138,6 +138,7 @@
     </androidx.cardview.widget.CardView>
 
     <Button
+        android:id="@+id/btnStartTest"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
