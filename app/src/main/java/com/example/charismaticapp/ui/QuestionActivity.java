@@ -1,5 +1,6 @@
 package com.example.charismaticapp.ui;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -76,11 +77,9 @@ public class QuestionActivity extends AppCompatActivity {
         });
 
         btnSubmit.setOnClickListener(v -> {
-            if (checkAnswer()) {
-                Toast.makeText(QuestionActivity.this, "Correct!", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(QuestionActivity.this, "Incorrect!", Toast.LENGTH_SHORT).show();
-            }
+            Intent overallIntent = new Intent(QuestionActivity.this, OverallActivity.class);
+            overallIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(overallIntent);
         });
     }
 
