@@ -1,16 +1,13 @@
 package com.example.charismaticapp.ui;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.charismaticapp.R;
-import com.example.charismaticapp.adapters.TestListData;
+import com.example.charismaticapp.data.TestListData;
 import com.example.charismaticapp.adapters.TestListRecyclerViewAdapter;
 
 import java.util.ArrayList;

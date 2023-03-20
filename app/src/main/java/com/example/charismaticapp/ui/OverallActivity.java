@@ -29,9 +29,9 @@ public class OverallActivity extends AppCompatActivity {
         btnSaveScore = findViewById(R.id.btnSaveScore);
 
         btnGoHome.setOnClickListener(v -> {
-            Intent availableQuiz = new Intent(OverallActivity.this, QuizActivity.class);
+            Intent homeActivity = new Intent(OverallActivity.this, HomeScreenActivity.class);
             // https://developer.android.com/reference/android/content/Intent#FLAG_ACTIVITY_NO_HISTORY
-            startActivity(availableQuiz);
+            startActivity(homeActivity);
         });
 
     }

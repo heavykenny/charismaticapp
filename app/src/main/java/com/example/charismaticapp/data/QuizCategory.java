@@ -1,4 +1,4 @@
-package com.example.charismaticapp.adapters;
+package com.example.charismaticapp.data;
 
 public class QuizCategory {
     private String catId;

@@ -6,8 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.charismaticapp.R;
-
-import java.util.Objects;
+import com.example.charismaticapp.fragments.QuizFragment;
 
 public class QuizActivity extends AppCompatActivity {
     @Override
@@ -23,7 +22,7 @@ public class QuizActivity extends AppCompatActivity {
 
         // Add the Fragment to the layout
         fragmentManager.beginTransaction()
-                .add(R.id.fragment_container, fragment)
+                .add(R.id.quizFragment, fragment)
                 .commit();
     }
 }

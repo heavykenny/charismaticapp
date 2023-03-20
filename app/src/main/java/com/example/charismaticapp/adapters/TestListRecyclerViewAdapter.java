@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.charismaticapp.R;
-import com.example.charismaticapp.ui.OtherActivity;
+import com.example.charismaticapp.data.TestListData;
 import com.example.charismaticapp.ui.StartQuestionActivity;
 
 import java.util.List;

@@ -7,6 +7,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.charismaticapp.R;
+import com.example.charismaticapp.data.QuizCategory;
 
 import java.util.List;
 

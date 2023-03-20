@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.charismaticapp.R;
+import com.example.charismaticapp.data.OtherPageData;
 import com.example.charismaticapp.ui.OtherActivity;
 
 import java.util.List;

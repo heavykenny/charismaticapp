@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/crdQuiz"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:translationZ="3dp"
+        app:cardBackgroundColor="@color/hunter_green"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:id="@+id/relLayList"
+            android:layout_width="337dp"
+            android:layout_height="100dp">
+
+            <TextView
+                android:id="@+id/txtViewCatName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed-light"
+                android:maxLines="2"
+                android:paddingTop="30dp"
+                android:text="Category Name"
+                android:textAlignment="center"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtViewTestCount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtViewCatName"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="36dp"
+                android:fontFamily="sans-serif-condensed-light"
+                android:text="50 tests"
+                android:textAlignment="center"
+                android:textSize="10sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relLayMenu"
+            android:layout_width="50dp"
+            android:layout_height="100dp"
+            android:layout_gravity="end">
+
+            <ImageView
+                android:id="@+id/quizMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="end"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginBottom="0dp"
+                android:background="@color/hunter_green_deep"
+                android:src="@drawable/more_vert" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

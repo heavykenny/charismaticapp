@@ -1,4 +1,4 @@
-package com.example.charismaticapp.ui;
+package com.example.charismaticapp.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,15 +6,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.charismaticapp.R;
-import com.example.charismaticapp.adapters.QuizCategory;
+import com.example.charismaticapp.data.QuizCategory;
 import com.example.charismaticapp.adapters.QuizCategoryAdapter;
+import com.example.charismaticapp.ui.TestListActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +48,6 @@ public class QuizFragment extends Fragment implements QuizCategoryAdapter.OnQuiz
 
     @Override
     public void onQuizCategoryClick(QuizCategory quizCategory) {
-//        Toast.makeText(getContext(), quizCategory.getName() + " clicked", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getContext(), TestListActivity.class);
         // REFERENCE - https://stackoverflow.com/a/39078856/9332871
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);

@@ -1,4 +1,4 @@
-package com.example.charismaticapp.adapters;
+package com.example.charismaticapp.data;
 
 public class QuestionsData {
     public static final int TYPE_TEXT = 0;

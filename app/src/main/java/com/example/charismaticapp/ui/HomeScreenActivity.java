@@ -29,4 +29,11 @@ public class HomeScreenActivity extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
     }
+
+    public void showNoteActivity(View view) {
+        Intent intent = new Intent(view.getContext(), NoteActivity.class);
+        // REFERENCE - https://stackoverflow.com/a/39078856/9332871
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(intent);
+    }
 }

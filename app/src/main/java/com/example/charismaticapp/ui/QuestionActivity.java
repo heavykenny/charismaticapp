@@ -9,13 +9,12 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.charismaticapp.R;
-import com.example.charismaticapp.adapters.QuestionsData;
+import com.example.charismaticapp.data.QuestionsData;
 
 import java.util.ArrayList;
 import java.util.List;

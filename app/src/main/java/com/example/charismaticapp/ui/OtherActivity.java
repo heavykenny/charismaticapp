@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.charismaticapp.R;
-import com.example.charismaticapp.adapters.OtherPageData;
+import com.example.charismaticapp.data.OtherPageData;
 import com.example.charismaticapp.adapters.OtherPageRecyclerViewAdapter;
 
 import java.util.ArrayList;
