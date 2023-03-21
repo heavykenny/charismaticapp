@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/viewNote"
-        android:title="View Note" />
-    <item
         android:id="@+id/editNote"
-        android:title="Edit Name" />
+        android:title="Edit Note" />
     <item
         android:id="@+id/deleteNote"
         android:title="Delete Note" />

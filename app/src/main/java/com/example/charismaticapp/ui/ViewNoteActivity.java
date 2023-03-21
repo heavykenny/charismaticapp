@@ -24,8 +24,6 @@ public class ViewNoteActivity extends AppCompatActivity {
     EditText contentText;
     Button cancelBtn;
     Button updateBtn;
-    String oldFileName;
-
     UserData userData;
 
     Note noteClass = new Note();
@@ -36,11 +34,13 @@ public class ViewNoteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_note);
 
         titleText = findViewById(R.id.edtTitleText);
-        oldFileName = titleText.getText().toString();
         contentText = findViewById(R.id.edtContentText);
         cancelBtn = findViewById(R.id.btnCancel);
         updateBtn = findViewById(R.id.btnUpdate);
         userData = getIntent().getParcelableExtra("UserData");
+
+        Intent i = getIntent();
+        String fileName = i.getStringExtra("fileName");
 
         cancelBtn.setOnClickListener(v -> {
             Intent intent = new Intent(ViewNoteActivity.this, NoteActivity.class);
@@ -52,7 +52,7 @@ public class ViewNoteActivity extends AppCompatActivity {
         });
 
         updateBtn.setOnClickListener(v -> {
-            noteClass.saveNote(oldFileName, titleText.getText().toString(), contentText.getText().toString(), ViewNoteActivity.this);
+            noteClass.saveNote(fileName, titleText.getText().toString(), contentText.getText().toString(), ViewNoteActivity.this);
 
             Intent intent = new Intent(ViewNoteActivity.this, NoteActivity.class);
             intent.setExtrasClassLoader(UserData.class.getClassLoader());
@@ -61,9 +61,6 @@ public class ViewNoteActivity extends AppCompatActivity {
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             startActivity(intent);
         });
-
-        Intent i = getIntent();
-        String fileName = i.getStringExtra("fileName");
 
         File file = noteClass.getFile(getApplicationContext(), fileName);
         try {

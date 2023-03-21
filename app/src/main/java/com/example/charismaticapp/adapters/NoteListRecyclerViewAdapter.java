@@ -1,6 +1,5 @@
 package com.example.charismaticapp.adapters;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -10,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,6 +18,8 @@ import com.example.charismaticapp.data.NoteData;
 import com.example.charismaticapp.data.UserData;
 import com.example.charismaticapp.ui.NoteActivity;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class NoteListRecyclerViewAdapter extends RecyclerView.Adapter<NoteListRecyclerViewAdapter.ViewHolder> {
@@ -47,17 +47,17 @@ public class NoteListRecyclerViewAdapter extends RecyclerView.Adapter<NoteListRe
     @Override
     public void onBindViewHolder(@NonNull NoteListRecyclerViewAdapter.ViewHolder holder, int position) {
         holder.noteName.setText(list.get(position).getName());
-        holder.noteDate.setText(list.get(position).getDate());
+
+        Date date = new Date(Long.parseLong(list.get(position).getDate()));
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        holder.noteDate.setText(dateFormat.format(date));
 
         holder.quizMenu.setOnClickListener(view -> {
             PopupMenu popupMenu = new PopupMenu(context, holder.quizMenu);
             popupMenu.inflate(R.menu.option_menu);
             popupMenu.setOnMenuItemClickListener(menuItem -> {
                 int id = menuItem.getItemId();
-                if (R.id.viewNote == id) {
-                    noteActivity.viewNoteDetails(context, list.get(position).getName(), userData);
-                    return true;
-                } else if (R.id.editNote == id) {
+                if (R.id.editNote == id) {
                     noteActivity.viewNoteDetails(context, list.get(position).getName(), userData);
                     return true;
                 } else if (R.id.deleteNote == id) {

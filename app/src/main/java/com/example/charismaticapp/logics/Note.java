@@ -1,11 +1,14 @@
 package com.example.charismaticapp.logics;
 
 import android.content.Context;
+import android.os.Handler;
+import android.widget.Toast;
 
 import com.example.charismaticapp.data.NoteData;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,19 +41,20 @@ public class Note {
     }
 
     public void saveNote(String oldFileName, String fileName, String fileContents, Context context) {
-        FileOutputStream outputStream;
         File oldFile = new File(context.getFilesDir(), oldFileName);
         File newFile = new File(context.getFilesDir(), fileName);
         if (oldFile.exists()) {
-            try {
-                outputStream = context.openFileOutput(fileName, Context.MODE_PRIVATE);
+            try (FileOutputStream outputStream = new FileOutputStream(newFile)) {
                 outputStream.write(fileContents.getBytes());
-                oldFile.renameTo(newFile);
-                outputStream.close();
+                outputStream.flush();
             } catch (Exception e) {
                 e.printStackTrace();
+                return;
+            }
+            if (newFile.exists() && newFile.length() == fileContents.length()) {
+                oldFile.delete();
             }
         }
-
     }
+
 }
