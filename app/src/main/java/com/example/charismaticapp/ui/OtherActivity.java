@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.charismaticapp.R;
 import com.example.charismaticapp.data.OtherPageData;
 import com.example.charismaticapp.adapters.OtherPageRecyclerViewAdapter;
+import com.example.charismaticapp.data.UserData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,5 +52,14 @@ public class OtherActivity extends AppCompatActivity {
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        UserData userData = getIntent().getParcelableExtra("UserData");
+        Intent i = new Intent(this, HomeScreenActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        i.putExtra("UserData", userData);
+        startActivity(i);
     }
 }

@@ -1,6 +1,6 @@
 package com.example.charismaticapp.ui;
 
-import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,24 +19,35 @@ import com.example.charismaticapp.logics.Note;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 public class NoteActivity extends AppCompatActivity {
+    private final Handler handler = new Handler();
     Note noteClass = new Note();
-    private List<NoteData> noteDataList;
     NoteListRecyclerViewAdapter adapter;
+    UserData userData;
+    Intent intent;
+    private List<NoteData> noteDataList;    private final Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            finish();
+            startActivity(intent);
+            overridePendingTransition(0, 0);
+            handler.postDelayed(this, 5000);
+        }
+    };
 
-    @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
 
+        intent = getIntent();
+
         TextView txtNote = findViewById(R.id.txtNote);
-        UserData userData = getIntent().getParcelableExtra("UserData");
+        userData = getIntent().getParcelableExtra("UserData");
         txtNote.setText(userData.getLastName() + "'s Notes");
 
         FloatingActionButton addFab = findViewById(R.id.addFab);
@@ -44,35 +55,66 @@ public class NoteActivity extends AppCompatActivity {
         updateList();
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
-        adapter = new NoteListRecyclerViewAdapter(noteDataList, getApplication());
+        adapter = new NoteListRecyclerViewAdapter(noteDataList, getApplicationContext(), getIntent());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         addFab.setOnClickListener(v -> {
             String currentDateTime = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.getDefault()).format(new Date());
-            noteClass.createNote(userData.getUsername() + "-" + currentDateTime, "Sample Text", NoteActivity.this);
+            String fileName = userData.getUsername() + "-" + currentDateTime + ".txt";
+            noteClass.createNote(fileName, "Sample Text", NoteActivity.this);
             updateList();
 
-            Intent intent = getIntent();
             finish();
             startActivity(intent);
             overridePendingTransition(0, 0);
         });
 
-
-
+        handler.postDelayed(runnable, 5000);
     }
 
     private void updateList() {
         noteDataList = noteClass.readAllNotes(NoteActivity.this);
     }
 
-    private List<NoteData> getNotes() {
-
-        List<NoteData> data = new ArrayList<>();
-        data.add(new NoteData("Sample 1", "31-08-2009"));
-
-        return data;
+    public void viewNoteDetails(Context context, String fileName, UserData i) {
+        Intent intent = new Intent(context, ViewNoteActivity.class);
+        intent.putExtra("fileName", fileName);
+        intent.putExtra("UserData", i);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
     }
 
+    public void deleteNoteDetails(Context context, String fileName, UserData user) {
+        noteClass.deleteNote(context, fileName);
+        Toast.makeText(context, "Note Deleted ", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent note = new Intent(NoteActivity.this, HomeScreenActivity.class);
+        // https://developer.android.com/reference/android/content/Intent#FLAG_ACTIVITY_NO_HISTORY
+        note.setExtrasClassLoader(UserData.class.getClassLoader());
+        note.putExtra("UserData", userData);
+        note.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        startActivity(note);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        handler.removeCallbacks(runnable);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        handler.postDelayed(runnable, 5000);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacks(runnable);
+    }
 }

@@ -45,4 +45,13 @@ public class HomeScreenActivity extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
     }
+
+    @Override
+    public void onBackPressed() {
+        UserData userData = getIntent().getParcelableExtra("UserData");
+        Intent i = new Intent(this, HomeScreenActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        i.putExtra("UserData", userData);
+        startActivity(i);
+    }
 }

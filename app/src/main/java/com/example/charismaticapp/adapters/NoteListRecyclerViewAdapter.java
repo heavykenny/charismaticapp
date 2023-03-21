@@ -2,6 +2,7 @@ package com.example.charismaticapp.adapters;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,12 +10,15 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.charismaticapp.R;
 import com.example.charismaticapp.data.NoteData;
+import com.example.charismaticapp.data.UserData;
+import com.example.charismaticapp.ui.NoteActivity;
 
 import java.util.List;
 
@@ -22,10 +26,15 @@ public class NoteListRecyclerViewAdapter extends RecyclerView.Adapter<NoteListRe
 
     List<NoteData> list;
     Context context;
+    Intent intent;
+    NoteActivity noteActivity = new NoteActivity();
+    UserData userData;
 
-    public NoteListRecyclerViewAdapter(List<NoteData> list, Application application) {
+    public NoteListRecyclerViewAdapter(List<NoteData> list, Context context, Intent intent) {
         this.list = list;
-        this.context = application;
+        this.context = context;
+        this.intent = intent;
+        this.userData = intent.getParcelableExtra("UserData");
     }
 
     @NonNull
@@ -44,13 +53,19 @@ public class NoteListRecyclerViewAdapter extends RecyclerView.Adapter<NoteListRe
             PopupMenu popupMenu = new PopupMenu(context, holder.quizMenu);
             popupMenu.inflate(R.menu.option_menu);
             popupMenu.setOnMenuItemClickListener(menuItem -> {
-
                 int id = menuItem.getItemId();
-                if (R.id.view == id) {
+                if (R.id.viewNote == id) {
+                    noteActivity.viewNoteDetails(context, list.get(position).getName(), userData);
                     return true;
-                } else if (R.id.edit_name == id) {
+                } else if (R.id.editNote == id) {
+                    noteActivity.viewNoteDetails(context, list.get(position).getName(), userData);
                     return true;
-                } else return R.id.delete == id;
+                } else if (R.id.deleteNote == id) {
+                    noteActivity.deleteNoteDetails(context, list.get(position).getName(), userData);
+                    return true;
+                }
+
+                return false;
             });
             popupMenu.show();
         });
@@ -85,7 +100,7 @@ public class NoteListRecyclerViewAdapter extends RecyclerView.Adapter<NoteListRe
         public void onClick(View v) {
             int position = getBindingAdapterPosition();
             String itemName = list.get(position).getName();
-
+            noteActivity.viewNoteDetails(context, itemName, userData);
         }
     }
 }
