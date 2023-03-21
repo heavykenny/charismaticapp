@@ -26,18 +26,32 @@
         android:layout_height="100dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
         android:src="@drawable/signup_welcome"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginBottom="20dp"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:gravity="center"
+        android:text="Username or Password is Incorrect!"
+        android:textAllCaps="true"
+        android:textColor="@color/red"
+        android:visibility="gone"
+        android:textSize="10sp"
+        android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/edtEmail"
+        android:id="@+id/edtUsername"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:fontFamily="sans-serif-condensed-light"
-        android:hint="@string/enter_email_address"
+        android:hint="@string/enter_username"
         android:inputType="textEmailAddress" />
 
     <EditText
@@ -50,13 +64,13 @@
         android:inputType="textPassword" />
 
     <Button
-        android:onClick="userLogin"
         android:id="@+id/btnLogin"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@drawable/rounded_button"
         android:fontFamily="sans-serif-condensed"
+        android:onClick="userLogin"
         android:text="@string/login" />
 
     <TextView
@@ -64,13 +78,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:clickable="true"
         android:fontFamily="sans-serif-condensed-light"
         android:gravity="center"
         android:text="@string/account_register"
         android:textAllCaps="true"
-        android:textSize="15sp"
-        android:clickable="true"
-        />
+        android:textSize="15sp" />
 
     <TextView
         android:layout_width="match_parent"

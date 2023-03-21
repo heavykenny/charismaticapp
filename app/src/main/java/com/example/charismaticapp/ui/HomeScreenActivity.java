@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.charismaticapp.R;
+import com.example.charismaticapp.data.UserData;
 
 public class HomeScreenActivity extends AppCompatActivity {
 
@@ -14,6 +16,10 @@ public class HomeScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
+        UserData userData = getIntent().getParcelableExtra("UserData");
+
+        TextView username = findViewById(R.id.txtName);
+        username.setText("Welcome, "+ userData.getLastName() + "!");
     }
 
     public void showOtherActivity(View view) {
@@ -32,6 +38,9 @@ public class HomeScreenActivity extends AppCompatActivity {
 
     public void showNoteActivity(View view) {
         Intent intent = new Intent(view.getContext(), NoteActivity.class);
+        intent.setExtrasClassLoader(UserData.class.getClassLoader());
+        UserData userData = getIntent().getParcelableExtra("UserData");
+        intent.putExtra("UserData", userData);
         // REFERENCE - https://stackoverflow.com/a/39078856/9332871
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);

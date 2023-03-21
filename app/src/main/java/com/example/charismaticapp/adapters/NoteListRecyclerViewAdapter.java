@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -54,10 +53,6 @@ public class NoteListRecyclerViewAdapter extends RecyclerView.Adapter<NoteListRe
                 } else return R.id.delete == id;
             });
             popupMenu.show();
-        });
-
-        holder.relLayList.setOnClickListener(v -> {
-            Toast.makeText(context, "SAMPLE " + position, Toast.LENGTH_SHORT).show();
         });
     }
 

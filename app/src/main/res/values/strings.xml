@@ -14,7 +14,7 @@
     <string name="quiz">Quiz</string>
     <string name="notes">Notes</string>
     <string name="enter_password">Enter Password</string>
-    <string name="enter_email_address">Enter Email Address</string>
+    <string name="enter_username">Enter Username</string>
     <string name="get_started_here">get started here !</string>
     <string name="login">Login</string>
     <string name="register">Register</string>

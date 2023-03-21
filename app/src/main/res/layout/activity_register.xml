@@ -57,12 +57,12 @@
         android:inputType="date" />
 
     <EditText
-        android:id="@+id/edtEmail"
+        android:id="@+id/edtUsername"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:fontFamily="sans-serif-condensed-light"
-        android:hint="@string/enter_email_address"
+        android:hint="@string/enter_username"
         android:inputType="textEmailAddress" />
 
     <EditText
