@@ -8,10 +8,12 @@
     tools:context=".fragments.QuizFragment">
 
     <TextView
+        android:background="@color/hunter_green_deep"
+        android:padding="15dp"
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="5dp"
         android:fontFamily="sans-serif-condensed-light"
         android:text="Available Quiz"
         android:textSize="30sp"
@@ -19,7 +21,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.1" />
-
 
     <GridView
         android:id="@+id/quiz_gridView"

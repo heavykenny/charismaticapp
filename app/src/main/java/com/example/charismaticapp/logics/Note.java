@@ -10,12 +10,14 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Note {
-    public void createNote(String fileName, String fileContents, Context context) {
-        FileOutputStream outputStream;
+    public NoteData createNote(String fileName, String fileContents, Context context) {
+        FileOutputStream outputStream = null;
         try {
             outputStream = context.openFileOutput(fileName, Context.MODE_PRIVATE);
             outputStream.write(fileContents.getBytes());
@@ -23,11 +25,17 @@ public class Note {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        File file = new File(context.getFilesDir(), fileName);
+        return new NoteData(file.getName(), String.valueOf(file.lastModified()));
     }
 
     public List<NoteData> readAllNotes(Context context) {
         File[] files = context.getFilesDir().listFiles();
-        List<NoteData> data = Arrays.stream(files).sorted((f1, f2) -> Long.compare(f2.lastModified(), f1.lastModified())).map(file -> new NoteData(file.getName(), String.valueOf(file.lastModified()))).collect(Collectors.toList());
+        List<NoteData> data = Arrays.stream(files)
+                .sorted(Comparator.comparingLong(File::lastModified))
+                .map(file -> new NoteData(file.getName(), String.valueOf(file.lastModified())))
+                .collect(Collectors.toList());
+        Collections.reverse(data);
         return data;
     }
 

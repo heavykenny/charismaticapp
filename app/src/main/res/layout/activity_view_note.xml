@@ -10,11 +10,12 @@
 
 
     <TextView
+        android:background="@color/hunter_green_deep"
         android:id="@+id/txtNote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-condensed-light"
-        android:paddingTop="30dp"
+        android:padding="15dp"
         android:text="Edit Note"
         android:textSize="30sp" />
 

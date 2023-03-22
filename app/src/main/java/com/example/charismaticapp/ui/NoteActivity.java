@@ -19,25 +19,17 @@ import com.example.charismaticapp.logics.Note;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 public class NoteActivity extends AppCompatActivity {
-    private final Handler handler = new Handler();
     Note noteClass = new Note();
     NoteListRecyclerViewAdapter adapter;
     UserData userData;
     Intent intent;
-    private List<NoteData> noteDataList;    private final Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            finish();
-            startActivity(intent);
-            overridePendingTransition(0, 0);
-            handler.postDelayed(this, 5000);
-        }
-    };
+    private List<NoteData> noteDataList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,15 +54,12 @@ public class NoteActivity extends AppCompatActivity {
         addFab.setOnClickListener(v -> {
             String currentDateTime = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.getDefault()).format(new Date());
             String fileName = userData.getUsername() + "-" + currentDateTime + ".txt";
-            noteClass.createNote(fileName, "Sample Text", NoteActivity.this);
-            updateList();
-
-            finish();
-            startActivity(intent);
-            overridePendingTransition(0, 0);
+            NoteData newNote = noteClass.createNote(fileName, "Sample Text", NoteActivity.this);
+            noteDataList.add(0, newNote);
+            adapter.notifyItemRangeInserted(0, 1);
+            recyclerView.smoothScrollToPosition(0);
         });
 
-        handler.postDelayed(runnable, 5000);
     }
 
     private void updateList() {
@@ -98,23 +87,5 @@ public class NoteActivity extends AppCompatActivity {
         note.putExtra("UserData", userData);
         note.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         startActivity(note);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        handler.removeCallbacks(runnable);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        handler.postDelayed(runnable, 5000);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        handler.removeCallbacks(runnable);
     }
 }

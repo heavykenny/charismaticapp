@@ -62,6 +62,9 @@ public class NoteListRecyclerViewAdapter extends RecyclerView.Adapter<NoteListRe
                     return true;
                 } else if (R.id.deleteNote == id) {
                     noteActivity.deleteNoteDetails(context, list.get(position).getName(), userData);
+                    list.remove(position);
+                    notifyItemRemoved(position);
+                    notifyItemRangeChanged(position, list.size());
                     return true;
                 }
 
