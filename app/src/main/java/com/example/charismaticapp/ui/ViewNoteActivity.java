@@ -43,23 +43,12 @@ public class ViewNoteActivity extends AppCompatActivity {
         String fileName = i.getStringExtra("fileName");
 
         cancelBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(ViewNoteActivity.this, NoteActivity.class);
-            intent.setExtrasClassLoader(UserData.class.getClassLoader());
-            intent.putExtra("UserData", userData);
-            // REFERENCE - https://stackoverflow.com/a/39078856/9332871
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-            startActivity(intent);
+            onBackPressed();
         });
 
         updateBtn.setOnClickListener(v -> {
             noteClass.saveNote(fileName, titleText.getText().toString(), contentText.getText().toString(), ViewNoteActivity.this);
-
-            Intent intent = new Intent(ViewNoteActivity.this, NoteActivity.class);
-            intent.setExtrasClassLoader(UserData.class.getClassLoader());
-            intent.putExtra("UserData", userData);
-            // REFERENCE - https://stackoverflow.com/a/39078856/9332871
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-            startActivity(intent);
+            onBackPressed();
         });
 
         File file = noteClass.getFile(getApplicationContext(), fileName);
@@ -83,11 +72,13 @@ public class ViewNoteActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
+
         Intent note = new Intent(ViewNoteActivity.this, NoteActivity.class);
         // https://developer.android.com/reference/android/content/Intent#FLAG_ACTIVITY_NO_HISTORY
         note.setExtrasClassLoader(UserData.class.getClassLoader());
         note.putExtra("UserData", userData);
-        note.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        note.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(note);
     }
 }
