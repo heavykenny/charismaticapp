@@ -18,11 +18,12 @@ public class QuestionsData {
     private String mVideoUrl;
 
     private String id;
-    private String text;
-    private List<String> options;
+    private String testId;
 
-    public QuestionsData(int type, String questionText, String answer1, String answer2, String answer3, String answer4, String answer) {
-        questionType = type;
+    public QuestionsData(String id, String testId, int type, String questionText, String answer1, String answer2, String answer3, String answer4, String answer) {
+        this.id = id;
+        this.testId = testId;
+        this.questionType = type;
         this.questionText = questionText;
         this.answer1 = answer1;
         this.answer2 = answer2;
@@ -31,8 +32,10 @@ public class QuestionsData {
         this.answer = answer;
     }
 
-    public QuestionsData(int type, String questionText, int imageResourceId, String answer1, String answer2, String answer3, String answer4, String answer) {
-        questionType = type;
+    public QuestionsData(String id, String testId, int type, String questionText, int imageResourceId, String answer1, String answer2, String answer3, String answer4, String answer) {
+        this.id = id;
+        this.testId = testId;
+        this.questionType = type;
         this.questionText = questionText;
         mImageResourceId = imageResourceId;
         this.answer1 = answer1;
@@ -42,8 +45,10 @@ public class QuestionsData {
         this.answer = answer;
     }
 
-    public QuestionsData(int type, String questionText, String videoUrl, String answer1, String answer2, String answer3, String answer4, String answer) {
-        questionType = type;
+    public QuestionsData(String id, String testId, int type, String questionText, String videoUrl, String answer1, String answer2, String answer3, String answer4, String answer) {
+        this.id = id;
+        this.testId = testId;
+        this.questionType = type;
         this.questionText = questionText;
         mVideoUrl = videoUrl;
         this.answer1 = answer1;
@@ -52,6 +57,14 @@ public class QuestionsData {
         this.answer4 = answer4;
         this.answer = answer;
 
+    }
+
+    public String getTestId() {
+        return this.testId;
+    }
+
+    public void setTestId(String testId) {
+        this.testId = testId;
     }
 
     public int getQuestionType() {
@@ -84,22 +97,6 @@ public class QuestionsData {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public List<String> getOptions() {
-        return options;
-    }
-
-    public void setOptions(List<String> options) {
-        this.options = options;
     }
 
     public int getType() {

@@ -86,6 +86,7 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(LoginActivity.this, HomeScreenActivity.class);
             // REFERENCE - https://stackoverflow.com/a/39078856/9332871
             intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            intent.setExtrasClassLoader(UserData.class.getClassLoader());
             intent.putExtra("UserData", userClass.getUser(edtUsername.getText().toString()));
             startActivity(intent);
         } else {

@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import com.example.charismaticapp.R;
 import com.example.charismaticapp.data.QuizCategory;
 import com.example.charismaticapp.adapters.QuizCategoryAdapter;
+import com.example.charismaticapp.data.UserData;
 import com.example.charismaticapp.logics.UtilClass;
 import com.example.charismaticapp.ui.TestListActivity;
 import com.google.gson.Gson;
@@ -33,9 +34,11 @@ public class QuizFragment extends Fragment implements QuizCategoryAdapter.OnQuiz
     UtilClass utilClass = new UtilClass();
     private List<QuizCategory> quizCategoryList = new ArrayList<>();
     private GridView quizView;
+    private final UserData userData;
     private Context appContext;
 
-    public QuizFragment() {
+    public QuizFragment(UserData userData) {
+        this.userData = userData;
     }
 
     @Nullable
@@ -53,15 +56,16 @@ public class QuizFragment extends Fragment implements QuizCategoryAdapter.OnQuiz
     private void getAllCategories() {
         Gson gson = new Gson();
         String jsonString = utilClass.loadJsonFileFromAssets("questions.json", appContext);
-        Type quizCategoryListType = new TypeToken<List<QuizCategory>>() {
-        }.getType();
-        quizCategoryList = gson.fromJson(jsonString, quizCategoryListType);
+        quizCategoryList = gson.fromJson(jsonString, new TypeToken<List<QuizCategory>>() {
+        }.getType());
     }
 
     @Override
     public void onQuizCategoryClick(QuizCategory quizCategory) {
         Intent intent = new Intent(getContext(), TestListActivity.class);
         intent.putExtra("QuizCategory", quizCategory);
+        intent.setExtrasClassLoader(UserData.class.getClassLoader());
+        intent.putExtra("UserData", userData);
         // REFERENCE - https://stackoverflow.com/a/39078856/9332871
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);

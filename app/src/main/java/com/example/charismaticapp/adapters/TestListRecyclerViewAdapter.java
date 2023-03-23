@@ -2,6 +2,7 @@ package com.example.charismaticapp.adapters;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,19 +14,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.charismaticapp.R;
 import com.example.charismaticapp.data.TestListData;
+import com.example.charismaticapp.data.UserData;
 import com.example.charismaticapp.ui.StartQuestionActivity;
 
 import java.util.List;
 
 public class TestListRecyclerViewAdapter extends RecyclerView.Adapter<TestListRecyclerViewAdapter.ViewHolder> {
     List<TestListData> list;
+
+    UserData userData;
     Context appContext;
     StartQuestionActivity startQuestionActivity = new StartQuestionActivity();
 
-    public TestListRecyclerViewAdapter(List<TestListData> data, Application application) {
+    public TestListRecyclerViewAdapter(List<TestListData> data, Context context, UserData userData) {
         this.list = data;
-        this.appContext = application;
+        this.userData = userData;
+        this.appContext = context;
     }
+
     @NonNull
     @Override
     public TestListRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -47,6 +53,7 @@ public class TestListRecyclerViewAdapter extends RecyclerView.Adapter<TestListRe
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView txtTitle;
         public TextView txtCount;
+
         public ViewHolder(View itemView) {
             super(itemView);
             txtTitle = itemView.findViewById(R.id.txtTitle);
@@ -60,9 +67,13 @@ public class TestListRecyclerViewAdapter extends RecyclerView.Adapter<TestListRe
         public void onClick(View v) {
             int position = getBindingAdapterPosition();
             String itemName = list.get(position).getTestId();
-            Toast.makeText(appContext, "Note Deleted " + itemName, Toast.LENGTH_SHORT).show();
 
-            startQuestionActivity.startQuiz(itemName, appContext);
+            Intent intent = new Intent(appContext, StartQuestionActivity.class);
+            intent.putExtra("TestId", itemName);
+            intent.setExtrasClassLoader(UserData.class.getClassLoader());
+            intent.putExtra("UserData", userData);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            appContext.startActivity(intent);
         }
     }
 }

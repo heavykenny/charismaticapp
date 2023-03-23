@@ -32,6 +32,10 @@ public class HomeScreenActivity extends AppCompatActivity {
     public void showQuizActivity(View view) {
         Intent intent = new Intent(view.getContext(), QuizActivity.class);
         // REFERENCE - https://stackoverflow.com/a/39078856/9332871
+        intent.setExtrasClassLoader(UserData.class.getClassLoader());
+        UserData userData = getIntent().getParcelableExtra("UserData");
+        intent.setExtrasClassLoader(UserData.class.getClassLoader());
+        intent.putExtra("UserData", userData);
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
     }
@@ -51,6 +55,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         UserData userData = getIntent().getParcelableExtra("UserData");
         Intent i = new Intent(this, HomeScreenActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        i.setExtrasClassLoader(UserData.class.getClassLoader());
         i.putExtra("UserData", userData);
         startActivity(i);
     }

@@ -42,7 +42,6 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/b_view"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_margin="5dp"
@@ -50,11 +49,11 @@
                     android:background="@drawable/rounded_button"
                     android:fontFamily="sans-serif-condensed-light"
                     android:gravity="center"
-                    android:text="Overall Scores"
+                    android:text="Overall Score"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/b_score"
+                    android:id="@+id/txtOverAllScore"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="30"
@@ -71,7 +70,6 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/c_view"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_margin="5dp"
@@ -83,7 +81,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/c_score"
+                    android:id="@+id/txtHighestScore"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="30"

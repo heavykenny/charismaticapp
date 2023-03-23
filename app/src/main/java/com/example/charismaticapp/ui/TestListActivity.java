@@ -11,6 +11,7 @@ import com.example.charismaticapp.R;
 import com.example.charismaticapp.adapters.TestListRecyclerViewAdapter;
 import com.example.charismaticapp.data.QuizCategory;
 import com.example.charismaticapp.data.TestListData;
+import com.example.charismaticapp.data.UserData;
 import com.example.charismaticapp.logics.UtilClass;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 
 public class TestListActivity extends AppCompatActivity {
 
+    UserData userData;
     QuizCategory quizCategory;
     UtilClass utilClass = new UtilClass();
     TextView titleTextView;
@@ -30,12 +32,14 @@ public class TestListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_list);
         quizCategory = getIntent().getParcelableExtra("QuizCategory");
+        userData = getIntent().getParcelableExtra("UserData");
 
         titleTextView = findViewById(R.id.txtNote);
         titleTextView.setText(utilClass.capitalize(quizCategory.getCatId() + " Tests"));
         List<TestListData> data = fill_with_data();
+
         RecyclerView rvTestList = findViewById(R.id.rvTestList);
-        TestListRecyclerViewAdapter adapter = new TestListRecyclerViewAdapter(data, getApplication());
+        TestListRecyclerViewAdapter adapter = new TestListRecyclerViewAdapter(data, getApplicationContext(), userData);
         rvTestList.setAdapter(adapter);
         rvTestList.setLayoutManager(new LinearLayoutManager(this));
     }

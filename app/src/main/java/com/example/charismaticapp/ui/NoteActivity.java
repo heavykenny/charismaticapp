@@ -69,6 +69,7 @@ public class NoteActivity extends AppCompatActivity {
     public void viewNoteDetails(Context appContext, String fileName, UserData i) {
         Intent intent = new Intent(appContext, ViewNoteActivity.class);
         intent.putExtra("fileName", fileName);
+        intent.setExtrasClassLoader(UserData.class.getClassLoader());
         intent.putExtra("UserData", i);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         appContext.startActivity(intent);

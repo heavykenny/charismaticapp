@@ -11,16 +11,19 @@ import com.example.charismaticapp.data.UserData;
 import com.example.charismaticapp.fragments.QuizFragment;
 
 public class QuizActivity extends AppCompatActivity {
+
+    UserData userData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+        userData = getIntent().getParcelableExtra("UserData");
 
         // Get the FragmentManager
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         // Create a new Fragment instance
-        QuizFragment fragment = new QuizFragment();
+        QuizFragment fragment = new QuizFragment(userData);
 
         // Add the Fragment to the layout
         fragmentManager.beginTransaction()
@@ -30,9 +33,10 @@ public class QuizActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        UserData userData = getIntent().getParcelableExtra("UserData");
+        userData = getIntent().getParcelableExtra("UserData");
         Intent i = new Intent(this, HomeScreenActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        i.setExtrasClassLoader(UserData.class.getClassLoader());
         i.putExtra("UserData", userData);
         startActivity(i);
     }

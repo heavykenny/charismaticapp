@@ -59,6 +59,7 @@ public class OtherActivity extends AppCompatActivity {
         UserData userData = getIntent().getParcelableExtra("UserData");
         Intent i = new Intent(this, HomeScreenActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        i.setExtrasClassLoader(UserData.class.getClassLoader());
         i.putExtra("UserData", userData);
         startActivity(i);
     }
