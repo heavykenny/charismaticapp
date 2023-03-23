@@ -66,17 +66,17 @@ public class NoteActivity extends AppCompatActivity {
         noteDataList = noteClass.readAllNotes(NoteActivity.this);
     }
 
-    public void viewNoteDetails(Context context, String fileName, UserData i) {
-        Intent intent = new Intent(context, ViewNoteActivity.class);
+    public void viewNoteDetails(Context appContext, String fileName, UserData i) {
+        Intent intent = new Intent(appContext, ViewNoteActivity.class);
         intent.putExtra("fileName", fileName);
         intent.putExtra("UserData", i);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent);
+        appContext.startActivity(intent);
     }
 
-    public void deleteNoteDetails(Context context, String fileName, UserData user) {
-        noteClass.deleteNote(context, fileName);
-        Toast.makeText(context, "Note Deleted ", Toast.LENGTH_SHORT).show();
+    public void deleteNoteDetails(Context appContext, String fileName, UserData user) {
+        noteClass.deleteNote(appContext, fileName);
+        Toast.makeText(appContext, "Note Deleted ", Toast.LENGTH_SHORT).show();
     }
 
     @Override

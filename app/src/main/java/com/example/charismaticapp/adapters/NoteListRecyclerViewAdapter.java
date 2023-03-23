@@ -25,14 +25,14 @@ import java.util.List;
 public class NoteListRecyclerViewAdapter extends RecyclerView.Adapter<NoteListRecyclerViewAdapter.ViewHolder> {
 
     List<NoteData> list;
-    Context context;
+    Context appContext;
     Intent intent;
     NoteActivity noteActivity = new NoteActivity();
     UserData userData;
 
-    public NoteListRecyclerViewAdapter(List<NoteData> list, Context context, Intent intent) {
+    public NoteListRecyclerViewAdapter(List<NoteData> list, Context appContext, Intent intent) {
         this.list = list;
-        this.context = context;
+        this.appContext = appContext;
         this.intent = intent;
         this.userData = intent.getParcelableExtra("UserData");
     }
@@ -53,15 +53,15 @@ public class NoteListRecyclerViewAdapter extends RecyclerView.Adapter<NoteListRe
         holder.noteDate.setText(dateFormat.format(date));
 
         holder.quizMenu.setOnClickListener(view -> {
-            PopupMenu popupMenu = new PopupMenu(context, holder.quizMenu);
+            PopupMenu popupMenu = new PopupMenu(appContext, holder.quizMenu);
             popupMenu.inflate(R.menu.option_menu);
             popupMenu.setOnMenuItemClickListener(menuItem -> {
                 int id = menuItem.getItemId();
                 if (R.id.editNote == id) {
-                    noteActivity.viewNoteDetails(context, list.get(position).getName(), userData);
+                    noteActivity.viewNoteDetails(appContext, list.get(position).getName(), userData);
                     return true;
                 } else if (R.id.deleteNote == id) {
-                    noteActivity.deleteNoteDetails(context, list.get(position).getName(), userData);
+                    noteActivity.deleteNoteDetails(appContext, list.get(position).getName(), userData);
                     list.remove(position);
                     notifyItemRemoved(position);
                     notifyItemRangeChanged(position, list.size());
@@ -103,7 +103,7 @@ public class NoteListRecyclerViewAdapter extends RecyclerView.Adapter<NoteListRe
         public void onClick(View v) {
             int position = getBindingAdapterPosition();
             String itemName = list.get(position).getName();
-            noteActivity.viewNoteDetails(context, itemName, userData);
+            noteActivity.viewNoteDetails(appContext, itemName, userData);
         }
     }
 }

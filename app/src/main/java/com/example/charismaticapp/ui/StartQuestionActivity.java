@@ -24,12 +24,10 @@ public class StartQuestionActivity extends AppCompatActivity {
         });
     }
 
-    public void startQuiz(int itemName, Context context) {
+    public void startQuiz(String testId, Context appContext) {
 
-        if (itemName == 1) {
-            Intent intent = new Intent(context, StartQuestionActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(intent);
-        }
+        Intent intent = new Intent(appContext, StartQuestionActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        appContext.startActivity(intent);
     }
 }

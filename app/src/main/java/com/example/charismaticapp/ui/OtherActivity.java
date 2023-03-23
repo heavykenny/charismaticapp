@@ -41,13 +41,13 @@ public class OtherActivity extends AppCompatActivity {
         return data;
     }
 
-    public void openOtherActivity(String itemName, Context context) {
+    public void openOtherActivity(String itemName, Context appContext) {
 
         switch (itemName) {
             case "Calculator App":
-                Intent intent = new Intent(context, CalculatorActivity.class);
+                Intent intent = new Intent(appContext, CalculatorActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
+                appContext.startActivity(intent);
                 break;
             default:
                 break;

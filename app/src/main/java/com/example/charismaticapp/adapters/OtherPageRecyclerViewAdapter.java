@@ -21,12 +21,12 @@ import java.util.List;
 public class OtherPageRecyclerViewAdapter extends RecyclerView.Adapter<OtherPageRecyclerViewAdapter.ViewHolder> {
 
     List<OtherPageData> list;
-    Context context;
+    Context appContext;
     OtherActivity otherActivity = new OtherActivity();
 
     public OtherPageRecyclerViewAdapter(List<OtherPageData> data, Application application) {
         this.list = data;
-        this.context = application;
+        this.appContext = application;
     }
 
     @NonNull
@@ -47,13 +47,13 @@ public class OtherPageRecyclerViewAdapter extends RecyclerView.Adapter<OtherPage
         holder.itemImage.setOnClickListener(v -> {
             // Retrieve the data for the clicked itemImage
             String itemName = list.get(holder.getLayoutPosition()).name;
-            otherActivity.openOtherActivity(itemName, context);
+            otherActivity.openOtherActivity(itemName, appContext);
         });
 
         holder.txtTitle.setOnClickListener(v -> {
             // Retrieve the data for the clicked txtTitle
             String itemName = list.get(holder.getLayoutPosition()).name;
-            otherActivity.openOtherActivity(itemName, context);
+            otherActivity.openOtherActivity(itemName, appContext);
         });
     }
 
@@ -74,7 +74,7 @@ public class OtherPageRecyclerViewAdapter extends RecyclerView.Adapter<OtherPage
         // and does the view lookups to find each subview
         public ViewHolder(View itemView) {
             // Stores the itemView in a public final member variable that can be used
-            // to access the context from any ViewHolder instance.
+            // to access the appContext from any ViewHolder instance.
             super(itemView);
 
             itemImage = itemView.findViewById(R.id.itemImage);
@@ -90,7 +90,7 @@ public class OtherPageRecyclerViewAdapter extends RecyclerView.Adapter<OtherPage
             // Retrieve the data for the clicked item
             int position = getBindingAdapterPosition();
             String itemName = list.get(position).name;
-            otherActivity.openOtherActivity(itemName, context);
+            otherActivity.openOtherActivity(itemName, appContext);
         }
     }
 }

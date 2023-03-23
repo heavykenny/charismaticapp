@@ -45,7 +45,7 @@ public class QuizCategoryAdapter extends BaseAdapter implements View.OnClickList
         TextView catName = v.findViewById(R.id.txtViewCatName);
         TextView testCount = v.findViewById(R.id.txtViewTestCount);
         catName.setText(quizCategoryList.get(position).getName());
-        testCount.setText(quizCategoryList.get(position).getNumbers() + " tests");
+        testCount.setText(quizCategoryList.get(position).getTestCounts() + " tests");
         v.setTag(position);
         v.setOnClickListener(this);
         return v;

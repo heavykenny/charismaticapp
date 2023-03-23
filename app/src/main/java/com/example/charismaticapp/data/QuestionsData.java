@@ -1,5 +1,7 @@
 package com.example.charismaticapp.data;
 
+import java.util.List;
+
 public class QuestionsData {
     public static final int TYPE_TEXT = 0;
     public static final int TYPE_IMAGE = 1;
@@ -14,6 +16,10 @@ public class QuestionsData {
     private final String answer;
     private int mImageResourceId;
     private String mVideoUrl;
+
+    private String id;
+    private String text;
+    private List<String> options;
 
     public QuestionsData(int type, String questionText, String answer1, String answer2, String answer3, String answer4, String answer) {
         questionType = type;
@@ -46,6 +52,54 @@ public class QuestionsData {
         this.answer4 = answer4;
         this.answer = answer;
 
+    }
+
+    public int getQuestionType() {
+        return questionType;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public int getmImageResourceId() {
+        return mImageResourceId;
+    }
+
+    public void setmImageResourceId(int mImageResourceId) {
+        this.mImageResourceId = mImageResourceId;
+    }
+
+    public String getmVideoUrl() {
+        return mVideoUrl;
+    }
+
+    public void setmVideoUrl(String mVideoUrl) {
+        this.mVideoUrl = mVideoUrl;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public List<String> getOptions() {
+        return options;
+    }
+
+    public void setOptions(List<String> options) {
+        this.options = options;
     }
 
     public int getType() {

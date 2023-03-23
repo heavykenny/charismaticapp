@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,12 +19,12 @@ import java.util.List;
 
 public class TestListRecyclerViewAdapter extends RecyclerView.Adapter<TestListRecyclerViewAdapter.ViewHolder> {
     List<TestListData> list;
-    Context context;
+    Context appContext;
     StartQuestionActivity startQuestionActivity = new StartQuestionActivity();
 
     public TestListRecyclerViewAdapter(List<TestListData> data, Application application) {
         this.list = data;
-        this.context = application;
+        this.appContext = application;
     }
     @NonNull
     @Override
@@ -35,7 +36,7 @@ public class TestListRecyclerViewAdapter extends RecyclerView.Adapter<TestListRe
     @Override
     public void onBindViewHolder(@NonNull TestListRecyclerViewAdapter.ViewHolder holder, int position) {
         holder.txtTitle.setText(list.get(position).name);
-        holder.txtCount.setText(String.valueOf(list.get(position).count));
+        holder.txtCount.setText(list.get(position).count + " tests");
     }
 
     @Override
@@ -58,8 +59,10 @@ public class TestListRecyclerViewAdapter extends RecyclerView.Adapter<TestListRe
         @Override
         public void onClick(View v) {
             int position = getBindingAdapterPosition();
-            int itemName = list.get(position).count;
-            startQuestionActivity.startQuiz(itemName, context);
+            String itemName = list.get(position).getTestId();
+            Toast.makeText(appContext, "Note Deleted " + itemName, Toast.LENGTH_SHORT).show();
+
+            startQuestionActivity.startQuiz(itemName, appContext);
         }
     }
 }

@@ -2,10 +2,8 @@ package com.example.charismaticapp.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -42,9 +40,7 @@ public class ViewNoteActivity extends AppCompatActivity {
         Intent i = getIntent();
         String fileName = i.getStringExtra("fileName");
 
-        cancelBtn.setOnClickListener(v -> {
-            onBackPressed();
-        });
+        cancelBtn.setOnClickListener(v -> onBackPressed());
 
         updateBtn.setOnClickListener(v -> {
             noteClass.saveNote(fileName, titleText.getText().toString(), contentText.getText().toString(), ViewNoteActivity.this);

@@ -5,14 +5,14 @@ import android.content.SharedPreferences;
 
 public class SaveState {
 
-    Context context;
+    Context appContext;
     String saveName;
     SharedPreferences sp;
 
-    public SaveState(Context context, String saveName) {
-        this.context = context;
+    public SaveState(Context appContext, String saveName) {
+        this.appContext = appContext;
         this.saveName = saveName;
-        sp = context.getSharedPreferences(saveName, context.MODE_PRIVATE);
+        sp = appContext.getSharedPreferences(saveName, appContext.MODE_PRIVATE);
     }
 
     public int getState() {

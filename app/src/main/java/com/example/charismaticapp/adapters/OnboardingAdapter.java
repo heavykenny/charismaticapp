@@ -15,7 +15,7 @@ import com.example.charismaticapp.R;
 
 public class OnboardingAdapter extends PagerAdapter {
 
-    Context context;
+    Context appContext;
     LayoutInflater layoutInflater;
     int[] titles = {R.string.welcome1, R.string.welcome2, R.string.welcome3};
     int[] onboardings = {R.string.onboarding1, R.string.onboarding2, R.string.onboarding3};
@@ -23,8 +23,8 @@ public class OnboardingAdapter extends PagerAdapter {
     int[] bgs = {R.drawable.background1, R.drawable.background2, R.drawable.background3};
 
 
-    public OnboardingAdapter(Context context) {
-        this.context = context;
+    public OnboardingAdapter(Context appContext) {
+        this.appContext = appContext;
     }
 
     @Override
@@ -40,7 +40,7 @@ public class OnboardingAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        layoutInflater = (LayoutInflater) appContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View v = layoutInflater.inflate(R.layout.slide, container, false);
 
         ImageView image = v.findViewById(R.id.slideImg);
