@@ -87,7 +87,7 @@
                     android:layout_weight="30"
                     android:fontFamily="sans-serif-condensed-light"
                     android:gravity="center"
-                    android:text="75%" />
+                    android:text="100%" />
 
             </LinearLayout>
 
@@ -119,6 +119,7 @@
             android:layout_height="50dp"
             android:layout_marginStart="20dp"
             android:background="@drawable/rounded_button"
+            android:backgroundTint="@color/hunter_green"
             android:fontFamily="sans-serif-condensed"
             android:text="Go back home"
             android:textSize="15sp" />

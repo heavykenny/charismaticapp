@@ -54,20 +54,17 @@
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
             android:src="@drawable/image_sample"
-            android:visibility="gone" />
+            android:visibility="gone"
+             />
 
         <VideoView
             android:id="@+id/vidQuestion"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
             android:visibility="gone" />
     </LinearLayout>
 
@@ -84,18 +81,21 @@
             android:id="@+id/radBtnAns1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/radio_custom_design"
             android:fontFamily="sans-serif-condensed"
             android:text="Dummy 1" />
 
         <RadioButton
             android:id="@+id/radBtnAns2"
             android:layout_width="match_parent"
+            style="@style/radio_custom_design"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-condensed"
             android:text="Dummy 1" />
 
         <RadioButton
             android:id="@+id/radBtnAns3"
+            style="@style/radio_custom_design"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-condensed"
@@ -103,6 +103,7 @@
 
         <RadioButton
             android:id="@+id/radBtnAns4"
+            style="@style/radio_custom_design"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-condensed"
@@ -143,6 +144,7 @@
             android:layout_height="50dp"
             android:layout_marginStart="20dp"
             android:background="@drawable/rounded_button"
+            android:backgroundTint="@color/hunter_green_deep"
             android:fontFamily="sans-serif-condensed"
             android:text="Submit"
             android:textSize="15sp" />

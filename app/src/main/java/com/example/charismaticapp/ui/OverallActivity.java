@@ -30,9 +30,9 @@ public class OverallActivity extends AppCompatActivity {
         setContentView(R.layout.activity_overall);
         Double overAll = getIntent().getDoubleExtra("OverAll", 0.0);
         userModel = getIntent().getParcelableExtra("UserModel");
+
         btnGoHome = findViewById(R.id.btnGoHome);
         btnSaveScore = findViewById(R.id.btnSaveScore);
-
         txtOverAllScore = findViewById(R.id.txtOverAllScore);
 
         txtOverAllScore.setText(overAll + "%");
@@ -42,6 +42,7 @@ public class OverallActivity extends AppCompatActivity {
             homeActivity.setExtrasClassLoader(UserModel.class.getClassLoader());
             homeActivity.putExtra("UserModel", userModel);
             // https://developer.android.com/reference/android/content/Intent#FLAG_ACTIVITY_NO_HISTORY
+            homeActivity.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             startActivity(homeActivity);
         });
 

@@ -12,21 +12,6 @@
   {
     "catId": "history",
     "quizCategoryTitle": "HIS101",
-    "testCounts": 5
-  },
-  {
-    "catId": "biology",
-    "quizCategoryTitle": "BIO101",
-    "testCounts": 7
-  },
-  {
-    "catId": "english",
-    "quizCategoryTitle": "ENG101",
-    "testCounts": 4
-  },
-  {
-    "catId": "chemistry",
-    "quizCategoryTitle": "CHM101",
-    "testCounts": 6
+    "testCounts": 2
   }
 ]

@@ -52,11 +52,6 @@ public class HomeScreenActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        UserModel userModel = getIntent().getParcelableExtra("UserModel");
-        Intent i = new Intent(this, HomeScreenActivity.class);
-        i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        i.setExtrasClassLoader(UserModel.class.getClassLoader());
-        i.putExtra("UserModel", userModel);
-        startActivity(i);
+        this.moveTaskToBack(true);
     }
 }

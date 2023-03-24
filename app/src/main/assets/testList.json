@@ -70,150 +70,17 @@
     "duration": 8
   },
   {
-    "name": "Cell Biology",
-    "catId": "biology",
-    "testId": "biology-1",
-    "count": 3,
-    "duration": 5
-  },
-  {
-    "name": "Ecology",
-    "catId": "biology",
-    "testId": "biology-2",
-    "count": 2,
-    "duration": 10
-  },
-  {
-    "name": "Genetics",
-    "catId": "biology",
-    "testId": "biology-3",
-    "count": 2,
-    "duration": 3
-  },
-  {
-    "name": "Evolution",
-    "catId": "biology",
-    "testId": "biology-4",
-    "count": 2,
-    "duration": 6
-  },
-  {
-    "name": "Biochemistry",
-    "catId": "biology",
-    "testId": "biology-5",
-    "count": 2,
-    "duration": 7
-  },
-  {
-    "name": "Skeleton System",
-    "catId": "biology",
-    "testId": "biology-7",
-    "count": 2,
-    "duration": 9
-  },
-  {
-    "name": "Anatomy",
-    "catId": "biology",
-    "testId": "biology-6",
-    "count": 2,
-    "duration": 4
-  },
-  {
-    "name": "English Grammar",
-    "catId": "english",
-    "testId": "english-1",
-    "count": 1,
-    "duration": 10
-  },
-  {
-    "name": "Writing",
-    "catId": "english",
-    "testId": "english-2",
-    "count": 1,
-    "duration": 6
-  },
-  {
-    "name": "Literature",
-    "catId": "english",
-    "testId": "english-3",
-    "count": 1,
-    "duration": 5
-  },
-  {
-    "name": "Creative Writing",
-    "catId": "english",
-    "testId": "english-4",
-    "count": 1,
-    "duration": 2
-  },
-  {
-    "name": "World History",
-    "catId": "history",
-    "testId": "history-1",
-    "count": 3,
-    "duration": 9
-  },
-  {
-    "name": "Ancient Civilizations",
-    "catId": "history",
-    "testId": "history-2",
-    "count": 2,
-    "duration": 7
-  },
-  {
-    "name": "Modern History",
-    "catId": "history",
-    "testId": "history-3",
-    "count": 2,
-    "duration": 8
-  },
-  {
     "name": "US History",
     "catId": "history",
-    "testId": "history-4",
+    "testId": "history-1",
     "count": 2,
     "duration": 5
   },
   {
     "name": "European History",
     "catId": "history",
-    "testId": "history-5",
+    "testId": "history-2",
     "count": 2,
     "duration": 2
-  },
-  {
-    "name": "Stoichiometry",
-    "catId": "chemistry",
-    "testId": "chemistry-1",
-    "count": 3,
-    "duration": 3
-  },
-  {
-    "name": "Thermochemistry",
-    "catId": "chemistry",
-    "testId": "chemistry-2",
-    "count": 3,
-    "duration": 7
-  },
-  {
-    "name": "Chemical Kinetics",
-    "catId": "chemistry",
-    "testId": "chemistry-3",
-    "count": 3,
-    "duration": 4
-  },
-  {
-    "name": "Equilibrium",
-    "catId": "chemistry",
-    "testId": "chemistry-4",
-    "count": 3,
-    "duration": 9
-  },
-  {
-    "name": "Acids and Bases",
-    "catId": "chemistry",
-    "testId": "chemistry-5",
-    "count": 3,
-    "duration": 10
   }
 ]

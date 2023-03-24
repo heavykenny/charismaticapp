@@ -43,7 +43,7 @@ public class StartQuestionActivity extends AppCompatActivity {
         txtTestTitle = findViewById(R.id.txtTestTitle);
 
         txtHighestScore.setText("100%");
-        txtQuestionCount.setText(testListModel.getCount() + " Tests");
+        txtQuestionCount.setText(testListModel.getCount() + " Questions");
         txtDuration.setText(testListModel.getDuration() + " minutes");
         txtTestTitle.setText(testListModel.getName());
         txtTitle.setText(utilClass.capitalizeFirstCharacter(testListModel.getCatId()));

@@ -57,7 +57,6 @@ public class NoteActivity extends AppCompatActivity {
             adapter.notifyItemRangeInserted(0, 1);
             recyclerView.smoothScrollToPosition(0);
         });
-
     }
 
     private void updateList() {
@@ -75,7 +74,7 @@ public class NoteActivity extends AppCompatActivity {
 
     public void deleteNoteDetails(Context appContext, String fileName) {
         noteControllerClass.deleteNote(appContext, fileName);
-        Toast.makeText(appContext, "NoteController Deleted ", Toast.LENGTH_SHORT).show();
+        Toast.makeText(appContext, "Note Deleted ", Toast.LENGTH_SHORT).show();
     }
 
     @Override

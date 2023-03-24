@@ -14,6 +14,7 @@ import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.example.charismaticapp.R;
 import com.example.charismaticapp.models.QuestionModel;
 import com.example.charismaticapp.models.QuizAnswerModel;
@@ -110,16 +111,15 @@ public class QuestionActivity extends AppCompatActivity {
             case QuestionModel.TYPE_IMAGE:
                 imgQuestion.setVisibility(View.VISIBLE);
                 vidQuestion.setVisibility(View.GONE);
-                imgQuestion.setImageResource(question.getImageResourceId());
+                Glide.with(getApplicationContext()).load(question.getImageURL()).into(imgQuestion);
                 break;
             case QuestionModel.TYPE_VIDEO:
                 imgQuestion.setVisibility(View.GONE);
-                vidQuestion.setVisibility(View.VISIBLE);
                 vidQuestion.setVideoURI(Uri.parse(question.getVideoUrl()));
+                vidQuestion.setVisibility(View.VISIBLE);
                 vidQuestion.start();
             default:
                 imgQuestion.setVisibility(View.GONE);
-                vidQuestion.setVisibility(View.GONE);
         }
 
         txtQuestion.setText(question.getQuestionText());

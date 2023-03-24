@@ -1,19 +1,19 @@
 package com.example.charismaticapp.models;
 
 public class QuestionModel {
-    public static final int TYPE_TEXT = 0;
-    public static final int TYPE_IMAGE = 1;
-    public static final int TYPE_VIDEO = 2;
+    public static final int TYPE_TEXT = 1;
+    public static final int TYPE_IMAGE = 2;
+    public static final int TYPE_VIDEO = 3;
 
-    private final int questionType;
+    private final int type;
     private final String questionText;
     private final String answer1;
     private final String answer2;
     private final String answer3;
     private final String answer4;
     private final String answer;
-    private int mImageResourceId;
-    private String mVideoUrl;
+    private String imageURL;
+    private String videoUrl;
 
     private String id;
     private String testId;
@@ -21,7 +21,7 @@ public class QuestionModel {
     public QuestionModel(String id, String testId, int type, String questionText, String answer1, String answer2, String answer3, String answer4, String answer) {
         this.id = id;
         this.testId = testId;
-        this.questionType = type;
+        this.type = type;
         this.questionText = questionText;
         this.answer1 = answer1;
         this.answer2 = answer2;
@@ -30,31 +30,18 @@ public class QuestionModel {
         this.answer = answer;
     }
 
-    public QuestionModel(String id, String testId, int type, String questionText, int imageResourceId, String answer1, String answer2, String answer3, String answer4, String answer) {
+    public QuestionModel(String id, String testId, int type, String questionText, String imageURL, String videoUrl, String answer1, String answer2, String answer3, String answer4, String answer) {
         this.id = id;
         this.testId = testId;
-        this.questionType = type;
+        this.type = type;
         this.questionText = questionText;
-        mImageResourceId = imageResourceId;
+        this.imageURL = imageURL;
+        this.videoUrl = videoUrl;
         this.answer1 = answer1;
         this.answer2 = answer2;
         this.answer3 = answer3;
         this.answer4 = answer4;
         this.answer = answer;
-    }
-
-    public QuestionModel(String id, String testId, int type, String questionText, String videoUrl, String answer1, String answer2, String answer3, String answer4, String answer) {
-        this.id = id;
-        this.testId = testId;
-        this.questionType = type;
-        this.questionText = questionText;
-        mVideoUrl = videoUrl;
-        this.answer1 = answer1;
-        this.answer2 = answer2;
-        this.answer3 = answer3;
-        this.answer4 = answer4;
-        this.answer = answer;
-
     }
 
     public String getTestId() {
@@ -65,28 +52,8 @@ public class QuestionModel {
         this.testId = testId;
     }
 
-    public int getQuestionType() {
-        return questionType;
-    }
-
     public String getAnswer() {
         return answer;
-    }
-
-    public int getmImageResourceId() {
-        return mImageResourceId;
-    }
-
-    public void setmImageResourceId(int mImageResourceId) {
-        this.mImageResourceId = mImageResourceId;
-    }
-
-    public String getmVideoUrl() {
-        return mVideoUrl;
-    }
-
-    public void setmVideoUrl(String mVideoUrl) {
-        this.mVideoUrl = mVideoUrl;
     }
 
     public String getId() {
@@ -98,19 +65,27 @@ public class QuestionModel {
     }
 
     public int getType() {
-        return questionType;
+        return type;
     }
 
     public String getQuestionText() {
         return questionText;
     }
 
-    public int getImageResourceId() {
-        return mImageResourceId;
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
     public String getVideoUrl() {
-        return mVideoUrl;
+        return videoUrl;
+    }
+
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
     }
 
     public String getAnswer1() {

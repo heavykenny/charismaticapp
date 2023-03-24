@@ -127,7 +127,7 @@
                     android:layout_weight="30"
                     android:fontFamily="sans-serif-condensed-light"
                     android:gravity="center"
-                    android:text="75%" />
+                    android:text="100%" />
 
             </LinearLayout>
 
