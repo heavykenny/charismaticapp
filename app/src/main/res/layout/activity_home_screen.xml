@@ -10,48 +10,102 @@
 
     <TextView
         android:id="@+id/txtName"
-        android:padding="15dp"
-        android:background="@color/hunter_green_deep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp"
+        android:background="@color/hunter_green_deep"
         android:fontFamily="sans-serif-condensed-light"
+        android:padding="15dp"
         android:text="Welcome, Kenny!"
         android:textSize="30sp" />
 
-    <GridLayout
+    <!--    <GridLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        android:layout_weight="2"-->
+    <!--        android:columnCount="2"-->
+    <!--        android:orientation="horizontal"-->
+    <!--        android:rowCount="2"-->
+    <!--        android:useDefaultMargins="true">-->
+
+    <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:columnCount="2"
-        android:orientation="horizontal"
-        android:rowCount="2"
-        android:useDefaultMargins="true">
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none">
 
-        <Button
-            android:onClick="showNoteActivity"
-            style="@style/button_homepage"
-            android:drawableTop="@drawable/speaker_notes"
-            android:text="@string/notes" />
-
-        <Button
-            android:onClick="showQuizActivity"
-            style="@style/button_homepage"
-            android:drawableTop="@drawable/quiz"
-            android:text="@string/quiz" />
-
-        <Button
-            style="@style/button_homepage"
-            android:drawableTop="@drawable/manage_accounts"
-            android:text="@string/settings" />
-
-        <Button
-            android:onClick="showOtherActivity"
-            style="@style/button_homepage"
-            android:drawableTop="@drawable/more_vert"
-            android:text="@string/others" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
 
-    </GridLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <Button
+                    style="@style/button_homepage"
+                    android:layout_width="300dp"
+                    android:layout_height="600dp"
+                    android:drawableTop="@drawable/speaker_notes"
+                    android:onClick="showNoteActivity"
+                    android:text="@string/notes" />
+
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <Button
+                    style="@style/button_homepage"
+                    android:layout_width="300dp"
+                    android:layout_height="600dp"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/quiz"
+                    android:onClick="showQuizActivity"
+                    android:text="@string/quiz" />
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <Button
+                    style="@style/button_homepage"
+                    android:layout_width="300dp"
+                    android:layout_height="600dp"
+                    android:drawableTop="@drawable/manage_accounts"
+                    android:text="@string/settings" />
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <Button
+                    style="@style/button_homepage"
+                    android:layout_width="300dp"
+                    android:layout_height="600dp"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/more_vert"
+                    android:onClick="showOtherActivity"
+                    android:text="@string/others" />
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+
+    <!--    </GridLayout>-->
 </LinearLayout>
