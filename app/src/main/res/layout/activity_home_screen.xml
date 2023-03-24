@@ -20,15 +20,6 @@
         android:text="Welcome, Kenny!"
         android:textSize="30sp" />
 
-    <!--    <GridLayout-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="0dp"-->
-    <!--        android:layout_weight="2"-->
-    <!--        android:columnCount="2"-->
-    <!--        android:orientation="horizontal"-->
-    <!--        android:rowCount="2"-->
-    <!--        android:useDefaultMargins="true">-->
-
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -53,9 +44,7 @@
                     android:drawableTop="@drawable/speaker_notes"
                     android:onClick="showNoteActivity"
                     android:text="@string/notes" />
-
             </FrameLayout>
-
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -72,7 +61,6 @@
                     android:text="@string/quiz" />
             </FrameLayout>
 
-
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -85,7 +73,6 @@
                     android:drawableTop="@drawable/manage_accounts"
                     android:text="@string/settings" />
             </FrameLayout>
-
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -105,7 +92,4 @@
         </LinearLayout>
 
     </HorizontalScrollView>
-
-
-    <!--    </GridLayout>-->
 </LinearLayout>
