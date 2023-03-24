@@ -1,4 +1,4 @@
-package com.example.charismaticapp.helpers;
+package com.example.charismaticapp.states;
 
 import android.content.Context;
 import android.content.SharedPreferences;

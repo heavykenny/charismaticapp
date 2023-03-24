@@ -1,12 +1,12 @@
 <resources>
     <string name="app_name">Charismatic App</string>
 
-    <string name="welcome1">Welcome1</string>
-    <string name="welcome2">Welcome2</string>
-    <string name="welcome3">Welcome3</string>
-    <string name="onboarding1">onboarding1</string>
-    <string name="onboarding2">onboarding2</string>
-    <string name="onboarding3">onboarding3</string>
+    <string name="welcome1">Welcome to Charismatic App</string>
+    <string name="welcome2">Join us on a journey of learning and discovery.</string>
+    <string name="welcome3">Get ready to take your education to the next level.</string>
+    <string name="onboarding1">Empowering students to reach their full potential through exceptional education and a supportive community. Join us on a journey of growth and discovery.</string>
+    <string name="onboarding2">Where learning meets innovation, and students are encouraged to think creatively and explore new ideas</string>
+    <string name="onboarding3">Discover your potential with us - a community of dedicated teachers and passionate students who are committed to academic excellence and personal growth.</string>
     <string name="account_login">Already have an account? Login in here</string>
     <string name="account_register">Don\'t have an account? Sign up here</string>
     <string name="others">Others</string>

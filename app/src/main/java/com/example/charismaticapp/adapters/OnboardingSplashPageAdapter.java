@@ -5,10 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.example.charismaticapp.R;
@@ -34,24 +34,24 @@ public class OnboardingSplashPageAdapter extends PagerAdapter {
 
     @Override
     public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
-        return view == (ConstraintLayout) object;
+        return view == (LinearLayout) object;
     }
 
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int index) {
         layoutInflater = (LayoutInflater) appContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View v = layoutInflater.inflate(R.layout.slide, container, false);
+        View v = layoutInflater.inflate(R.layout.splash_slide_layout, container, false);
 
-        ImageView image = v.findViewById(R.id.slideImg);
-        TextView title = v.findViewById(R.id.sliderTitle);
-        TextView subtitle = v.findViewById(R.id.sliderSubtitle);
-        ConstraintLayout layout = v.findViewById(R.id.sliderLayout);
+        ImageView slideImg = v.findViewById(R.id.slideImg);
+        TextView sliderTitle = v.findViewById(R.id.sliderTitle);
+        TextView sliderSubtitle = v.findViewById(R.id.sliderSubtitle);
+        LinearLayout sliderLayout = v.findViewById(R.id.sliderLayout);
 
-        image.setImageResource(splashImages[index]);
-        title.setText(splashTitles[index]);
-        subtitle.setText(splashTitleTexts[index]);
-        layout.setBackgroundResource(splashBackgrounds[index]);
+        slideImg.setImageResource(splashImages[index]);
+        sliderTitle.setText(splashTitles[index]);
+        sliderSubtitle.setText(splashTitleTexts[index]);
+        sliderLayout.setBackgroundResource(splashBackgrounds[index]);
 
         container.addView(v);
 
@@ -60,6 +60,6 @@ public class OnboardingSplashPageAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-        container.removeView((ConstraintLayout) object);
+        container.removeView((LinearLayout) object);
     }
 }

@@ -35,7 +35,7 @@ public class OtherActivity extends AppCompatActivity {
 
     public List<OtherPagesModel> getOtherPagesData() {
         List<OtherPagesModel> otherPagesModelList = new ArrayList<>();
-        otherPagesModelList.add(new OtherPagesModel("CalculatorController App", R.drawable.calculate));
+        otherPagesModelList.add(new OtherPagesModel("Calculator App", R.drawable.calculate));
         otherPagesModelList.add(new OtherPagesModel("Background Changer", R.drawable.wallpaper));
         otherPagesModelList.add(new OtherPagesModel("Dice Roller", R.drawable.casino));
         return otherPagesModelList;

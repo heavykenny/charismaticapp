@@ -1,32 +1,32 @@
 [
   {
     "catId": "maths",
-    "name": "MTH101",
+    "quizCategoryTitle": "MTH101",
     "testCounts": 6
   },
   {
     "catId": "physics",
-    "name": "PHY101",
+    "quizCategoryTitle": "PHY101",
     "testCounts": 4
   },
   {
     "catId": "history",
-    "name": "HIS101",
+    "quizCategoryTitle": "HIS101",
     "testCounts": 5
   },
   {
     "catId": "biology",
-    "name": "BIO101",
+    "quizCategoryTitle": "BIO101",
     "testCounts": 7
   },
   {
     "catId": "english",
-    "name": "ENG101",
+    "quizCategoryTitle": "ENG101",
     "testCounts": 4
   },
   {
     "catId": "chemistry",
-    "name": "CHM101",
+    "quizCategoryTitle": "CHM101",
     "testCounts": 6
   }
 ]

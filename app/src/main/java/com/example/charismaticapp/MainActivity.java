@@ -12,7 +12,7 @@ import androidx.cardview.widget.CardView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.charismaticapp.adapters.OnboardingSplashPageAdapter;
-import com.example.charismaticapp.helpers.SaveState;
+import com.example.charismaticapp.states.SaveState;
 import com.example.charismaticapp.ui.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
     ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
         }
 
         @Override
@@ -49,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onPageScrollStateChanged(int state) {
-
         }
     };
 
