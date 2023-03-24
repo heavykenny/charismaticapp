@@ -1,35 +1,32 @@
 package com.example.charismaticapp.adapters;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.charismaticapp.R;
-import com.example.charismaticapp.data.TestListData;
-import com.example.charismaticapp.data.UserData;
+import com.example.charismaticapp.models.TestListModel;
+import com.example.charismaticapp.models.UserModel;
 import com.example.charismaticapp.ui.StartQuestionActivity;
 
 import java.util.List;
 
 public class TestListRecyclerViewAdapter extends RecyclerView.Adapter<TestListRecyclerViewAdapter.ViewHolder> {
-    List<TestListData> list;
+    List<TestListModel> testListModelList;
 
-    UserData userData;
+    UserModel userModel;
     Context appContext;
-    StartQuestionActivity startQuestionActivity = new StartQuestionActivity();
 
-    public TestListRecyclerViewAdapter(List<TestListData> data, Context context, UserData userData) {
-        this.list = data;
-        this.userData = userData;
-        this.appContext = context;
+    public TestListRecyclerViewAdapter(List<TestListModel> testListModelList, Context appContext, UserModel userModel) {
+        this.testListModelList = testListModelList;
+        this.userModel = userModel;
+        this.appContext = appContext;
     }
 
     @NonNull
@@ -40,14 +37,14 @@ public class TestListRecyclerViewAdapter extends RecyclerView.Adapter<TestListRe
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TestListRecyclerViewAdapter.ViewHolder holder, int position) {
-        holder.txtTitle.setText(list.get(position).name);
-        holder.txtCount.setText(list.get(position).count + " tests");
+    public void onBindViewHolder(@NonNull TestListRecyclerViewAdapter.ViewHolder holder, int index) {
+        holder.txtTitle.setText(testListModelList.get(index).name);
+        holder.txtCount.setText(testListModelList.get(index).count + " tests");
     }
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return testListModelList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -65,15 +62,15 @@ public class TestListRecyclerViewAdapter extends RecyclerView.Adapter<TestListRe
         // Handle onClick events for the whole item view
         @Override
         public void onClick(View v) {
-            int position = getBindingAdapterPosition();
-            String itemName = list.get(position).getTestId();
+            int index = getBindingAdapterPosition();
+            String testId = testListModelList.get(index).getTestId();
 
-            Intent intent = new Intent(appContext, StartQuestionActivity.class);
-            intent.putExtra("TestId", itemName);
-            intent.setExtrasClassLoader(UserData.class.getClassLoader());
-            intent.putExtra("UserData", userData);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            appContext.startActivity(intent);
+            Intent i = new Intent(appContext, StartQuestionActivity.class);
+            i.putExtra("TestId", testId);
+            i.setExtrasClassLoader(UserModel.class.getClassLoader());
+            i.putExtra("UserModel", userModel);
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            appContext.startActivity(i);
         }
     }
 }

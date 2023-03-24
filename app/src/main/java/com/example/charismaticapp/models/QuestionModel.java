@@ -1,8 +1,6 @@
-package com.example.charismaticapp.data;
+package com.example.charismaticapp.models;
 
-import java.util.List;
-
-public class QuestionsData {
+public class QuestionModel {
     public static final int TYPE_TEXT = 0;
     public static final int TYPE_IMAGE = 1;
     public static final int TYPE_VIDEO = 2;
@@ -20,7 +18,7 @@ public class QuestionsData {
     private String id;
     private String testId;
 
-    public QuestionsData(String id, String testId, int type, String questionText, String answer1, String answer2, String answer3, String answer4, String answer) {
+    public QuestionModel(String id, String testId, int type, String questionText, String answer1, String answer2, String answer3, String answer4, String answer) {
         this.id = id;
         this.testId = testId;
         this.questionType = type;
@@ -32,7 +30,7 @@ public class QuestionsData {
         this.answer = answer;
     }
 
-    public QuestionsData(String id, String testId, int type, String questionText, int imageResourceId, String answer1, String answer2, String answer3, String answer4, String answer) {
+    public QuestionModel(String id, String testId, int type, String questionText, int imageResourceId, String answer1, String answer2, String answer3, String answer4, String answer) {
         this.id = id;
         this.testId = testId;
         this.questionType = type;
@@ -45,7 +43,7 @@ public class QuestionsData {
         this.answer = answer;
     }
 
-    public QuestionsData(String id, String testId, int type, String questionText, String videoUrl, String answer1, String answer2, String answer3, String answer4, String answer) {
+    public QuestionModel(String id, String testId, int type, String questionText, String videoUrl, String answer1, String answer2, String answer3, String answer4, String answer) {
         this.id = id;
         this.testId = testId;
         this.questionType = type;

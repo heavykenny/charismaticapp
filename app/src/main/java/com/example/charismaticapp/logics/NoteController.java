@@ -2,7 +2,7 @@ package com.example.charismaticapp.logics;
 
 import android.content.Context;
 
-import com.example.charismaticapp.data.NoteData;
+import com.example.charismaticapp.models.NoteModel;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -12,8 +12,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Note {
-    public NoteData createNote(String notePath, String fileContents, Context appContext) {
+public class NoteController {
+    public NoteModel createNote(String notePath, String fileContents, Context appContext) {
         FileOutputStream os;
         try {
             os = appContext.openFileOutput(notePath, Context.MODE_PRIVATE);
@@ -23,12 +23,12 @@ public class Note {
             e.printStackTrace();
         }
         File note = new File(appContext.getFilesDir(), notePath);
-        return new NoteData(note.getName(), String.valueOf(note.lastModified()));
+        return new NoteModel(note.getName(), String.valueOf(note.lastModified()));
     }
 
-    public List<NoteData> readAllNotes(Context appContext) {
+    public List<NoteModel> readAllNotes(Context appContext) {
         File[] allNotes = appContext.getFilesDir().listFiles();
-        List<NoteData> data = Arrays.stream(allNotes).sorted(Comparator.comparingLong(File::lastModified)).map(note -> new NoteData(note.getName(), String.valueOf(note.lastModified()))).collect(Collectors.toList());
+        List<NoteModel> data = Arrays.stream(allNotes).sorted(Comparator.comparingLong(File::lastModified)).map(note -> new NoteModel(note.getName(), String.valueOf(note.lastModified()))).collect(Collectors.toList());
         Collections.reverse(data);
         return data;
     }

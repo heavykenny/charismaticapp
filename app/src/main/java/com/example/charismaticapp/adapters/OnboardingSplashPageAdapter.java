@@ -13,23 +13,23 @@ import androidx.viewpager.widget.PagerAdapter;
 
 import com.example.charismaticapp.R;
 
-public class OnboardingAdapter extends PagerAdapter {
+public class OnboardingSplashPageAdapter extends PagerAdapter {
 
     Context appContext;
     LayoutInflater layoutInflater;
-    int[] titles = {R.string.welcome1, R.string.welcome2, R.string.welcome3};
-    int[] onboardings = {R.string.onboarding1, R.string.onboarding2, R.string.onboarding3};
-    int[] images = {R.drawable.back_to_school, R.drawable.personal_notebook, R.drawable.book_lover};
-    int[] bgs = {R.drawable.background1, R.drawable.background2, R.drawable.background3};
+    int[] splashTitles = {R.string.welcome1, R.string.welcome2, R.string.welcome3};
+    int[] splashTitleTexts = {R.string.onboarding1, R.string.onboarding2, R.string.onboarding3};
+    int[] splashImages = {R.drawable.back_to_school, R.drawable.personal_notebook, R.drawable.book_lover};
+    int[] splashBackgrounds = {R.drawable.background1, R.drawable.background2, R.drawable.background3};
 
 
-    public OnboardingAdapter(Context appContext) {
+    public OnboardingSplashPageAdapter(Context appContext) {
         this.appContext = appContext;
     }
 
     @Override
     public int getCount() {
-        return titles.length;
+        return splashTitles.length;
     }
 
     @Override
@@ -39,7 +39,7 @@ public class OnboardingAdapter extends PagerAdapter {
 
     @NonNull
     @Override
-    public Object instantiateItem(@NonNull ViewGroup container, int position) {
+    public Object instantiateItem(@NonNull ViewGroup container, int index) {
         layoutInflater = (LayoutInflater) appContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View v = layoutInflater.inflate(R.layout.slide, container, false);
 
@@ -48,10 +48,10 @@ public class OnboardingAdapter extends PagerAdapter {
         TextView subtitle = v.findViewById(R.id.sliderSubtitle);
         ConstraintLayout layout = v.findViewById(R.id.sliderLayout);
 
-        image.setImageResource(images[position]);
-        title.setText(titles[position]);
-        subtitle.setText(onboardings[position]);
-        layout.setBackgroundResource(bgs[position]);
+        image.setImageResource(splashImages[index]);
+        title.setText(splashTitles[index]);
+        subtitle.setText(splashTitleTexts[index]);
+        layout.setBackgroundResource(splashBackgrounds[index]);
 
         container.addView(v);
 

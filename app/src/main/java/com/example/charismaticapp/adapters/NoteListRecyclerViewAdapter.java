@@ -14,8 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.charismaticapp.R;
-import com.example.charismaticapp.data.NoteData;
-import com.example.charismaticapp.data.UserData;
+import com.example.charismaticapp.models.NoteModel;
+import com.example.charismaticapp.models.UserModel;
 import com.example.charismaticapp.ui.NoteActivity;
 
 import java.text.SimpleDateFormat;
@@ -24,17 +24,17 @@ import java.util.List;
 
 public class NoteListRecyclerViewAdapter extends RecyclerView.Adapter<NoteListRecyclerViewAdapter.ViewHolder> {
 
-    List<NoteData> list;
+    List<NoteModel> noteModelList;
     Context appContext;
-    Intent intent;
+    Intent i;
     NoteActivity noteActivity = new NoteActivity();
-    UserData userData;
+    UserModel userModel;
 
-    public NoteListRecyclerViewAdapter(List<NoteData> list, Context appContext, Intent intent) {
-        this.list = list;
+    public NoteListRecyclerViewAdapter(List<NoteModel> noteModelList, Context appContext, Intent i) {
+        this.noteModelList = noteModelList;
         this.appContext = appContext;
-        this.intent = intent;
-        this.userData = intent.getParcelableExtra("UserData");
+        this.i = i;
+        this.userModel = i.getParcelableExtra("UserModel");
     }
 
     @NonNull
@@ -45,26 +45,26 @@ public class NoteListRecyclerViewAdapter extends RecyclerView.Adapter<NoteListRe
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NoteListRecyclerViewAdapter.ViewHolder holder, int position) {
-        holder.noteName.setText(list.get(position).getName());
+    public void onBindViewHolder(@NonNull NoteListRecyclerViewAdapter.ViewHolder viewHolder, int index) {
+        viewHolder.noteTitle.setText(noteModelList.get(index).getNoteTitle());
 
-        Date date = new Date(Long.parseLong(list.get(position).getDate()));
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        holder.noteDate.setText(dateFormat.format(date));
+        Date currentDate = new Date(Long.parseLong(noteModelList.get(index).getCreatedDate()));
+        SimpleDateFormat currentDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        viewHolder.noteCreatedDate.setText(currentDateFormat.format(currentDate));
 
-        holder.quizMenu.setOnClickListener(view -> {
-            PopupMenu popupMenu = new PopupMenu(appContext, holder.quizMenu);
+        viewHolder.quizMenu.setOnClickListener(view -> {
+            PopupMenu popupMenu = new PopupMenu(appContext, viewHolder.quizMenu);
             popupMenu.inflate(R.menu.option_menu);
             popupMenu.setOnMenuItemClickListener(menuItem -> {
                 int id = menuItem.getItemId();
                 if (R.id.editNote == id) {
-                    noteActivity.viewNoteDetails(appContext, list.get(position).getName(), userData);
+                    noteActivity.viewNoteDetails(appContext, noteModelList.get(index).getNoteTitle(), userModel);
                     return true;
                 } else if (R.id.deleteNote == id) {
-                    noteActivity.deleteNoteDetails(appContext, list.get(position).getName(), userData);
-                    list.remove(position);
-                    notifyItemRemoved(position);
-                    notifyItemRangeChanged(position, list.size());
+                    noteActivity.deleteNoteDetails(appContext, noteModelList.get(index).getNoteTitle());
+                    noteModelList.remove(index);
+                    notifyItemRemoved(index);
+                    notifyItemRangeChanged(index, noteModelList.size());
                     return true;
                 }
 
@@ -76,12 +76,12 @@ public class NoteListRecyclerViewAdapter extends RecyclerView.Adapter<NoteListRe
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return noteModelList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView noteName;
-        public TextView noteDate;
+        public TextView noteTitle;
+        public TextView noteCreatedDate;
         public ImageView quizMenu;
 
         public RelativeLayout relLayList;
@@ -90,8 +90,8 @@ public class NoteListRecyclerViewAdapter extends RecyclerView.Adapter<NoteListRe
         public ViewHolder(View itemView) {
             super(itemView);
 
-            noteName = itemView.findViewById(R.id.txtViewCatName);
-            noteDate = itemView.findViewById(R.id.txtViewTestCount);
+            noteTitle = itemView.findViewById(R.id.txtViewCatName);
+            noteCreatedDate = itemView.findViewById(R.id.txtViewTestCount);
             quizMenu = itemView.findViewById(R.id.quizMenu);
             relLayList = itemView.findViewById(R.id.relLayList);
             relLayMenu = itemView.findViewById(R.id.relLayMenu);
@@ -101,9 +101,8 @@ public class NoteListRecyclerViewAdapter extends RecyclerView.Adapter<NoteListRe
 
         @Override
         public void onClick(View v) {
-            int position = getBindingAdapterPosition();
-            String itemName = list.get(position).getName();
-            noteActivity.viewNoteDetails(appContext, itemName, userData);
+            int index = getBindingAdapterPosition();
+            noteActivity.viewNoteDetails(appContext, noteModelList.get(index).getNoteTitle(), userModel);
         }
     }
 }

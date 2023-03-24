@@ -1,6 +1,5 @@
 package com.example.charismaticapp.adapters;
 
-import android.app.Application;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.charismaticapp.R;
-import com.example.charismaticapp.data.OtherPageData;
+import com.example.charismaticapp.models.OtherPagesModel;
 import com.example.charismaticapp.ui.OtherActivity;
 
 import java.util.List;
@@ -20,13 +19,13 @@ import java.util.List;
 
 public class OtherPageRecyclerViewAdapter extends RecyclerView.Adapter<OtherPageRecyclerViewAdapter.ViewHolder> {
 
-    List<OtherPageData> list;
+    List<OtherPagesModel> otherPagesModelList;
     Context appContext;
     OtherActivity otherActivity = new OtherActivity();
 
-    public OtherPageRecyclerViewAdapter(List<OtherPageData> data, Application application) {
-        this.list = data;
-        this.appContext = application;
+    public OtherPageRecyclerViewAdapter(List<OtherPagesModel> otherPagesModelList, Context appContext) {
+        this.otherPagesModelList = otherPagesModelList;
+        this.appContext = appContext;
     }
 
     @NonNull
@@ -40,26 +39,26 @@ public class OtherPageRecyclerViewAdapter extends RecyclerView.Adapter<OtherPage
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //Use the provided View Holder on the onCreateViewHolder method to populate the current row on the RecyclerView
-        holder.itemImage.setImageResource(list.get(position).imageId);
-        holder.txtTitle.setText(list.get(position).name);
+        holder.itemImage.setImageResource(otherPagesModelList.get(position).imageId);
+        holder.txtTitle.setText(otherPagesModelList.get(position).pageName);
 
         // Set the onClickListener for itemImage and txtTitle
         holder.itemImage.setOnClickListener(v -> {
             // Retrieve the data for the clicked itemImage
-            String itemName = list.get(holder.getLayoutPosition()).name;
+            String itemName = otherPagesModelList.get(holder.getLayoutPosition()).pageName;
             otherActivity.openOtherActivity(itemName, appContext);
         });
 
         holder.txtTitle.setOnClickListener(v -> {
             // Retrieve the data for the clicked txtTitle
-            String itemName = list.get(holder.getLayoutPosition()).name;
+            String itemName = otherPagesModelList.get(holder.getLayoutPosition()).pageName;
             otherActivity.openOtherActivity(itemName, appContext);
         });
     }
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return otherPagesModelList.size();
     }
 
     // Provide a direct reference to each of the views within a data item
@@ -89,7 +88,7 @@ public class OtherPageRecyclerViewAdapter extends RecyclerView.Adapter<OtherPage
         public void onClick(View v) {
             // Retrieve the data for the clicked item
             int position = getBindingAdapterPosition();
-            String itemName = list.get(position).name;
+            String itemName = otherPagesModelList.get(position).pageName;
             otherActivity.openOtherActivity(itemName, appContext);
         }
     }

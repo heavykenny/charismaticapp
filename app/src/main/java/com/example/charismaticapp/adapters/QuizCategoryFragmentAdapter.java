@@ -7,22 +7,22 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.charismaticapp.R;
-import com.example.charismaticapp.data.QuizCategory;
+import com.example.charismaticapp.models.QuizCategoryModel;
 
 import java.util.List;
 
-public class QuizCategoryAdapter extends BaseAdapter implements View.OnClickListener {
-    private final List<QuizCategory> quizCategoryList;
+public class QuizCategoryFragmentAdapter extends BaseAdapter implements View.OnClickListener {
+    private final List<QuizCategoryModel> quizCategoryModelList;
     private final OnQuizCategoryClickListener onQuizCategoryClickListener;
 
-    public QuizCategoryAdapter(List<QuizCategory> quizCategoryList, OnQuizCategoryClickListener onQuizCategoryClickListener) {
-        this.quizCategoryList = quizCategoryList;
+    public QuizCategoryFragmentAdapter(List<QuizCategoryModel> quizCategoryModelList, OnQuizCategoryClickListener onQuizCategoryClickListener) {
+        this.quizCategoryModelList = quizCategoryModelList;
         this.onQuizCategoryClickListener = onQuizCategoryClickListener;
     }
 
     @Override
     public int getCount() {
-        return quizCategoryList.size();
+        return quizCategoryModelList.size();
     }
 
     @Override
@@ -44,8 +44,8 @@ public class QuizCategoryAdapter extends BaseAdapter implements View.OnClickList
 
         TextView catName = v.findViewById(R.id.txtViewCatName);
         TextView testCount = v.findViewById(R.id.txtViewTestCount);
-        catName.setText(quizCategoryList.get(position).getName());
-        testCount.setText(quizCategoryList.get(position).getTestCounts() + " tests");
+        catName.setText(quizCategoryModelList.get(position).getQuizCategoryTitle());
+        testCount.setText(quizCategoryModelList.get(position).getTestCounts() + " tests");
         v.setTag(position);
         v.setOnClickListener(this);
         return v;
@@ -57,11 +57,11 @@ public class QuizCategoryAdapter extends BaseAdapter implements View.OnClickList
         // Get the position of the clicked item
         int position = (Integer) view.getTag();
         // Call the onQuizCategoryClickListener with the clicked item
-        onQuizCategoryClickListener.onQuizCategoryClick(quizCategoryList.get(position));
+        onQuizCategoryClickListener.onQuizCategoryClick(quizCategoryModelList.get(position));
     }
 
     // Interface for handling quiz category clicks
     public interface OnQuizCategoryClickListener {
-        void onQuizCategoryClick(QuizCategory quizCategory);
+        void onQuizCategoryClick(QuizCategoryModel quizCategoryModel);
     }
 }

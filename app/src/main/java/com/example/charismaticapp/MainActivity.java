@@ -11,11 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.charismaticapp.adapters.OnboardingAdapter;
+import com.example.charismaticapp.adapters.OnboardingSplashPageAdapter;
 import com.example.charismaticapp.helpers.SaveState;
-import com.example.charismaticapp.ui.HomeScreenActivity;
 import com.example.charismaticapp.ui.LoginActivity;
-import com.example.charismaticapp.ui.RegisterActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -74,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
 
-        OnboardingAdapter adapter = new OnboardingAdapter(this);
+        OnboardingSplashPageAdapter adapter = new OnboardingSplashPageAdapter(this);
         viewPager.setAdapter(adapter);
         dotsFunction(0);
 

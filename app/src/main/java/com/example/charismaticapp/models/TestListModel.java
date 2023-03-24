@@ -1,6 +1,6 @@
-package com.example.charismaticapp.data;
+package com.example.charismaticapp.models;
 
-public class TestListData {
+public class TestListModel {
     public String name;
     public String catId;
     public String testId;
@@ -16,7 +16,7 @@ public class TestListData {
         this.duration = duration;
     }
 
-    public TestListData(String name, String catId, String testId, int count, String duration) {
+    public TestListModel(String name, String catId, String testId, int count, String duration) {
         this.name = name;
         this.catId = catId;
         this.testId = testId;

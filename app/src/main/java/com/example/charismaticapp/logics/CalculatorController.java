@@ -1,14 +1,11 @@
 package com.example.charismaticapp.logics;
 
-public class Calculator {
+public class CalculatorController {
     private final Number a, b;
 
-    public Calculator(String firstNumber, String secondNumber) {
+    public CalculatorController(String firstNumber, String secondNumber) {
         this.a = parseNumber(firstNumber);
         this.b = parseNumber(secondNumber);
-
-        System.out.println(a);
-        System.out.println(b);
     }
 
     public Number add() {

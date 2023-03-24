@@ -15,21 +15,19 @@ import android.widget.VideoView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.charismaticapp.R;
-import com.example.charismaticapp.data.QuestionsData;
-import com.example.charismaticapp.data.QuizAnswers;
-import com.example.charismaticapp.data.TestListData;
-import com.example.charismaticapp.data.UserData;
+import com.example.charismaticapp.models.QuestionModel;
+import com.example.charismaticapp.models.QuizAnswerModel;
+import com.example.charismaticapp.models.UserModel;
 import com.example.charismaticapp.logics.UtilClass;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class QuestionActivity extends AppCompatActivity {
-    private final ArrayList<QuizAnswers> quizAnswersList = new ArrayList<>();
+    private final ArrayList<QuizAnswerModel> quizAnswerModelList = new ArrayList<>();
     UtilClass utilClass = new UtilClass();
     String testId;
     private ImageView imgQuestion;
@@ -44,8 +42,8 @@ public class QuestionActivity extends AppCompatActivity {
     private Button btnPrevious;
     private Button btnNext;
     private Button btnSubmit;
-    private UserData userData;
-    private List<QuestionsData> questionsDataList;
+    private UserModel userModel;
+    private List<QuestionModel> questionModelList;
     private int currentQuestionIndex = 0;
 
     @Override
@@ -67,9 +65,9 @@ public class QuestionActivity extends AppCompatActivity {
         btnSubmit = findViewById(R.id.btnSubmit);
 
         testId = getIntent().getStringExtra("TestId");
-        userData = getIntent().getParcelableExtra("UserData");
+        userModel = getIntent().getParcelableExtra("UserModel");
 
-        questionsDataList = loadQuestions();
+        questionModelList = loadQuestions();
 
         updateQuestion();
 
@@ -82,10 +80,10 @@ public class QuestionActivity extends AppCompatActivity {
             if (radGrpAnswers.getCheckedRadioButtonId() == -1) {
                 Toast.makeText(this, "Please select an option!", Toast.LENGTH_SHORT).show();
             } else {
-                QuestionsData question = questionsDataList.get(currentQuestionIndex);
+                QuestionModel question = questionModelList.get(currentQuestionIndex);
                 int selectedId = radGrpAnswers.getCheckedRadioButtonId();
                 RadioButton selectedRadioButton = findViewById(selectedId);
-                quizAnswersList.add(new QuizAnswers(userData.getId(), question.getId(), selectedRadioButton.getText().toString()));
+                quizAnswerModelList.add(new QuizAnswerModel(userModel.getId(), question.getId(), selectedRadioButton.getText().toString()));
                 currentQuestionIndex++;
                 updateQuestion();
             }
@@ -94,27 +92,27 @@ public class QuestionActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(v -> {
             Intent overallIntent = new Intent(QuestionActivity.this, OverallActivity.class);
             overallIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            overallIntent.setExtrasClassLoader(UserData.class.getClassLoader());
-            overallIntent.putExtra("UserData", userData);
-            overallIntent.putExtra("OverAll", checkAnswer(questionsDataList, quizAnswersList));
+            overallIntent.setExtrasClassLoader(UserModel.class.getClassLoader());
+            overallIntent.putExtra("UserModel", userModel);
+            overallIntent.putExtra("OverAll", checkAnswer(questionModelList, quizAnswerModelList));
             startActivity(overallIntent);
         });
     }
 
     private void updateQuestion() {
         btnPrevious.setEnabled(currentQuestionIndex != 0);
-        btnNext.setEnabled(currentQuestionIndex != questionsDataList.size() - 1);
-        btnSubmit.setEnabled(currentQuestionIndex == questionsDataList.size() - 1);
+        btnNext.setEnabled(currentQuestionIndex != questionModelList.size() - 1);
+        btnSubmit.setEnabled(currentQuestionIndex == questionModelList.size() - 1);
 
-        QuestionsData question = questionsDataList.get(currentQuestionIndex);
+        QuestionModel question = questionModelList.get(currentQuestionIndex);
 
         switch (question.getType()) {
-            case QuestionsData.TYPE_IMAGE:
+            case QuestionModel.TYPE_IMAGE:
                 imgQuestion.setVisibility(View.VISIBLE);
                 vidQuestion.setVisibility(View.GONE);
                 imgQuestion.setImageResource(question.getImageResourceId());
                 break;
-            case QuestionsData.TYPE_VIDEO:
+            case QuestionModel.TYPE_VIDEO:
                 imgQuestion.setVisibility(View.GONE);
                 vidQuestion.setVisibility(View.VISIBLE);
                 vidQuestion.setVideoURI(Uri.parse(question.getVideoUrl()));
@@ -129,17 +127,17 @@ public class QuestionActivity extends AppCompatActivity {
         radBtnAns2.setText(question.getAnswer2());
         radBtnAns3.setText(question.getAnswer3());
         radBtnAns4.setText(question.getAnswer4());
-        txtQuestionCount.setText("Question " + (currentQuestionIndex + 1) + " of " + questionsDataList.size());
+        txtQuestionCount.setText("Question " + (currentQuestionIndex + 1) + " of " + questionModelList.size());
 
         radGrpAnswers.clearCheck();
     }
 
-    public double checkAnswer(List<QuestionsData> questionsDataList, ArrayList<QuizAnswers> quizAnswersList) {
+    public double checkAnswer(List<QuestionModel> questionModelList, ArrayList<QuizAnswerModel> quizAnswerModelList) {
         double correct = 0;
-        double totalQuestions = questionsDataList.size();
-        for (QuizAnswers quizAnswers : quizAnswersList) {
-            for (QuestionsData question : questionsDataList) {
-                if (quizAnswers.getQuizId().equals(question.getId()) && quizAnswers.getAnswer().equals(question.getAnswer())) {
+        double totalQuestions = questionModelList.size();
+        for (QuizAnswerModel quizAnswerModel : quizAnswerModelList) {
+            for (QuestionModel question : questionModelList) {
+                if (quizAnswerModel.getQuizId().equals(question.getId()) && quizAnswerModel.getAnswer().equals(question.getAnswer())) {
                     correct++;
                 }
             }
@@ -148,11 +146,11 @@ public class QuestionActivity extends AppCompatActivity {
         return (correct / totalQuestions) * 100;
     }
 
-    private List<QuestionsData> loadQuestions() {
-        List<QuestionsData> questionsData;
+    private List<QuestionModel> loadQuestions() {
+        List<QuestionModel> questionsData;
         Gson quizJson = new Gson();
-        String jsonString = utilClass.loadJsonFileFromAssets("quizzes.json", getApplicationContext());
-        questionsData = quizJson.fromJson(jsonString, new TypeToken<List<QuestionsData>>() {
+        String jsonString = utilClass.getJsonFromStorage("quizzes.json", getApplicationContext());
+        questionsData = quizJson.fromJson(jsonString, new TypeToken<List<QuestionModel>>() {
         }.getType());
 
         return questionsData.stream().filter(quiz -> quiz.getTestId().equals(testId)).collect(Collectors.toList());

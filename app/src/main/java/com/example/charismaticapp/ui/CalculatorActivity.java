@@ -8,9 +8,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.charismaticapp.R;
-import com.example.charismaticapp.logics.Calculator;
+import com.example.charismaticapp.logics.CalculatorController;
 
-import java.text.DecimalFormat;
 import java.util.Objects;
 
 public class CalculatorActivity extends AppCompatActivity {
@@ -25,7 +24,7 @@ public class CalculatorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
 
-        Objects.requireNonNull(getSupportActionBar()).setTitle("Calculator App");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("CalculatorController App");
     }
 
     public void ButtonClick(View view) {
@@ -56,19 +55,19 @@ public class CalculatorActivity extends AppCompatActivity {
         } else if (buttonId == R.id.btnEquals) {
             secondNumber = displayTotal;
             if (!firstNumber.isEmpty() && !secondNumber.isEmpty()) {
-                Calculator calculator = new Calculator(firstNumber, secondNumber);
+                CalculatorController calculatorController = new CalculatorController(firstNumber, secondNumber);
                 switch (method) {
                     case "*":
-                        displayTotal = String.valueOf(calculator.multiply());
+                        displayTotal = String.valueOf(calculatorController.multiply());
                         break;
                     case "+":
-                        displayTotal = String.valueOf(calculator.add());
+                        displayTotal = String.valueOf(calculatorController.add());
                         break;
                     case "-":
-                        displayTotal = String.valueOf(calculator.minus());
+                        displayTotal = String.valueOf(calculatorController.minus());
                         break;
                     case "/":
-                        displayTotal = String.valueOf(calculator.divide());
+                        displayTotal = String.valueOf(calculatorController.divide());
                         break;
                 }
             }

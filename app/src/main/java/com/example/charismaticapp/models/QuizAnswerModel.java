@@ -1,22 +1,19 @@
-package com.example.charismaticapp.data;
+package com.example.charismaticapp.models;
 
 import android.os.Parcel;
-import android.os.Parcelable;
 
-import androidx.annotation.NonNull;
-
-public class QuizAnswers {
+public class QuizAnswerModel {
     int userId;
     String quizId;
     String answer;
 
-    public QuizAnswers(int userId, String quizId, String answer) {
+    public QuizAnswerModel(int userId, String quizId, String answer) {
         this.userId = userId;
         this.quizId = quizId;
         this.answer = answer;
     }
 
-    protected QuizAnswers(Parcel in) {
+    protected QuizAnswerModel(Parcel in) {
         userId = in.readInt();
         quizId = in.readString();
         answer = in.readString();

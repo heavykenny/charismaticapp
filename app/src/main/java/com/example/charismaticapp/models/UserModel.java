@@ -1,18 +1,29 @@
-package com.example.charismaticapp.data;
+package com.example.charismaticapp.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
-public class UserData implements Parcelable {
+public class UserModel implements Parcelable {
+    public static final Creator<UserModel> CREATOR = new Creator<UserModel>() {
+        @Override
+        public UserModel createFromParcel(Parcel in) {
+            return new UserModel(in);
+        }
+
+        @Override
+        public UserModel[] newArray(int size) {
+            return new UserModel[size];
+        }
+    };
     String username;
     String firstName;
     String lastName;
     int id;
     String password;
 
-    public UserData(String sureName, String lastName, String username, int id, String password) {
+    public UserModel(String sureName, String lastName, String username, int id, String password) {
         this.username = username;
         this.firstName = sureName;
         this.lastName = lastName;
@@ -20,25 +31,13 @@ public class UserData implements Parcelable {
         this.password = password;
     }
 
-    protected UserData(Parcel in) {
+    protected UserModel(Parcel in) {
         username = in.readString();
         firstName = in.readString();
         lastName = in.readString();
         id = in.readInt();
         password = in.readString();
     }
-
-    public static final Creator<UserData> CREATOR = new Creator<UserData>() {
-        @Override
-        public UserData createFromParcel(Parcel in) {
-            return new UserData(in);
-        }
-
-        @Override
-        public UserData[] newArray(int size) {
-            return new UserData[size];
-        }
-    };
 
     public String getUsername() {
         return username;

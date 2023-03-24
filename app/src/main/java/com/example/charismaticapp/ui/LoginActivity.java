@@ -14,28 +14,28 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.charismaticapp.R;
-import com.example.charismaticapp.data.UserData;
-import com.example.charismaticapp.logics.User;
+import com.example.charismaticapp.models.UserModel;
+import com.example.charismaticapp.logics.UserController;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
-    private List<UserData> userData;
+    private List<UserModel> userData;
 
-    public static List<UserData> createDummyUserData() {
-        List<UserData> data = new ArrayList<>();
+    public static List<UserModel> createDummyUserData() {
+        List<UserModel> data = new ArrayList<>();
 
-        data.add(new UserData("Doe", "Johnson", "john", 1234, "pass"));
-        data.add(new UserData("Smith", "Anderson", "jane34", 5678, "abc456"));
-        data.add(new UserData("Brown", "Williams", "mike56", 9012, "xyz789"));
-        data.add(new UserData("Lee", "Taylor", "sarah78", 3456, "qwerty12"));
-        data.add(new UserData("Jones", "Davis", "david90", 7890, "p@ssw0rd"));
-        data.add(new UserData("Taylor", "Moore", "lisa12", 2345, "letmein1"));
-        data.add(new UserData("Wilson", "Johnson", "peter34", 6789, "changeme"));
-        data.add(new UserData("Miller", "Brown", "mary56", 1234, "password123"));
-        data.add(new UserData("Davis", "Smith", "steve78", 5678, "securepass"));
-        data.add(new UserData("Anderson", "Wilson", "emily90", 9012, "passw0rd!"));
+        data.add(new UserModel("Doe", "Johnson", "john", 1234, "pass"));
+        data.add(new UserModel("Smith", "Anderson", "jane34", 5678, "abc456"));
+        data.add(new UserModel("Brown", "Williams", "mike56", 9012, "xyz789"));
+        data.add(new UserModel("Lee", "Taylor", "sarah78", 3456, "qwerty12"));
+        data.add(new UserModel("Jones", "Davis", "david90", 7890, "p@ssw0rd"));
+        data.add(new UserModel("Taylor", "Moore", "lisa12", 2345, "letmein1"));
+        data.add(new UserModel("Wilson", "Johnson", "peter34", 6789, "changeme"));
+        data.add(new UserModel("Miller", "Brown", "mary56", 1234, "password123"));
+        data.add(new UserModel("Davis", "Smith", "steve78", 5678, "securepass"));
+        data.add(new UserModel("Anderson", "Wilson", "emily90", 9012, "passw0rd!"));
 
         return data;
     }
@@ -77,17 +77,17 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void userLogin(View view) {
-        User userClass = new User(userData);
+        UserController userControllerClass = new UserController(userData);
         EditText edtUsername = findViewById(R.id.edtUsername);
         EditText edtPassword = findViewById(R.id.edtPassword);
         TextView txtMessage = findViewById(R.id.txtMessage);
 
-        if (userClass.login(edtUsername.getText().toString(), edtPassword.getText().toString())) {
+        if (userControllerClass.login(edtUsername.getText().toString(), edtPassword.getText().toString())) {
             Intent intent = new Intent(LoginActivity.this, HomeScreenActivity.class);
             // REFERENCE - https://stackoverflow.com/a/39078856/9332871
             intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            intent.setExtrasClassLoader(UserData.class.getClassLoader());
-            intent.putExtra("UserData", userClass.getUser(edtUsername.getText().toString()));
+            intent.setExtrasClassLoader(UserModel.class.getClassLoader());
+            intent.putExtra("UserModel", userControllerClass.getUserByUsername(edtUsername.getText().toString()));
             startActivity(intent);
         } else {
             txtMessage.setVisibility(View.VISIBLE);

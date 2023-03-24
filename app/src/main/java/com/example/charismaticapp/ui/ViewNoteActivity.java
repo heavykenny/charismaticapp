@@ -8,8 +8,8 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.charismaticapp.R;
-import com.example.charismaticapp.data.UserData;
-import com.example.charismaticapp.logics.Note;
+import com.example.charismaticapp.logics.NoteController;
+import com.example.charismaticapp.models.UserModel;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -22,9 +22,9 @@ public class ViewNoteActivity extends AppCompatActivity {
     EditText contentText;
     Button cancelBtn;
     Button updateBtn;
-    UserData userData;
+    UserModel userModel;
 
-    Note noteClass = new Note();
+    NoteController noteControllerClass = new NoteController();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class ViewNoteActivity extends AppCompatActivity {
         contentText = findViewById(R.id.edtContentText);
         cancelBtn = findViewById(R.id.btnCancel);
         updateBtn = findViewById(R.id.btnUpdate);
-        userData = getIntent().getParcelableExtra("UserData");
+        userModel = getIntent().getParcelableExtra("UserModel");
 
         Intent i = getIntent();
         String fileName = i.getStringExtra("fileName");
@@ -43,11 +43,11 @@ public class ViewNoteActivity extends AppCompatActivity {
         cancelBtn.setOnClickListener(v -> onBackPressed());
 
         updateBtn.setOnClickListener(v -> {
-            noteClass.saveNote(fileName, titleText.getText().toString(), contentText.getText().toString(), ViewNoteActivity.this);
+            noteControllerClass.saveNote(fileName, titleText.getText().toString(), contentText.getText().toString(), ViewNoteActivity.this);
             onBackPressed();
         });
 
-        File file = noteClass.getFile(getApplicationContext(), fileName);
+        File file = noteControllerClass.getFile(getApplicationContext(), fileName);
         try {
             BufferedReader reader = new BufferedReader(new FileReader(file));
             String line;
@@ -72,8 +72,8 @@ public class ViewNoteActivity extends AppCompatActivity {
 
         Intent note = new Intent(ViewNoteActivity.this, NoteActivity.class);
         // https://developer.android.com/reference/android/content/Intent#FLAG_ACTIVITY_NO_HISTORY
-        note.setExtrasClassLoader(UserData.class.getClassLoader());
-        note.putExtra("UserData", userData);
+        note.setExtrasClassLoader(UserModel.class.getClassLoader());
+        note.putExtra("UserModel", userModel);
         note.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(note);
     }

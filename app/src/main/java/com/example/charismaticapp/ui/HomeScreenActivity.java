@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.charismaticapp.R;
-import com.example.charismaticapp.data.UserData;
+import com.example.charismaticapp.models.UserModel;
 
 public class HomeScreenActivity extends AppCompatActivity {
 
@@ -16,10 +16,10 @@ public class HomeScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
-        UserData userData = getIntent().getParcelableExtra("UserData");
+        UserModel userModel = getIntent().getParcelableExtra("UserModel");
 
         TextView username = findViewById(R.id.txtName);
-        username.setText("Welcome, "+ userData.getLastName() + "!");
+        username.setText("Welcome, "+ userModel.getLastName() + "!");
     }
 
     public void showOtherActivity(View view) {
@@ -32,19 +32,19 @@ public class HomeScreenActivity extends AppCompatActivity {
     public void showQuizActivity(View view) {
         Intent intent = new Intent(view.getContext(), QuizActivity.class);
         // REFERENCE - https://stackoverflow.com/a/39078856/9332871
-        intent.setExtrasClassLoader(UserData.class.getClassLoader());
-        UserData userData = getIntent().getParcelableExtra("UserData");
-        intent.setExtrasClassLoader(UserData.class.getClassLoader());
-        intent.putExtra("UserData", userData);
+        intent.setExtrasClassLoader(UserModel.class.getClassLoader());
+        UserModel userModel = getIntent().getParcelableExtra("UserModel");
+        intent.setExtrasClassLoader(UserModel.class.getClassLoader());
+        intent.putExtra("UserModel", userModel);
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
     }
 
     public void showNoteActivity(View view) {
         Intent intent = new Intent(view.getContext(), NoteActivity.class);
-        intent.setExtrasClassLoader(UserData.class.getClassLoader());
-        UserData userData = getIntent().getParcelableExtra("UserData");
-        intent.putExtra("UserData", userData);
+        intent.setExtrasClassLoader(UserModel.class.getClassLoader());
+        UserModel userModel = getIntent().getParcelableExtra("UserModel");
+        intent.putExtra("UserModel", userModel);
         // REFERENCE - https://stackoverflow.com/a/39078856/9332871
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
@@ -52,11 +52,11 @@ public class HomeScreenActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        UserData userData = getIntent().getParcelableExtra("UserData");
+        UserModel userModel = getIntent().getParcelableExtra("UserModel");
         Intent i = new Intent(this, HomeScreenActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        i.setExtrasClassLoader(UserData.class.getClassLoader());
-        i.putExtra("UserData", userData);
+        i.setExtrasClassLoader(UserModel.class.getClassLoader());
+        i.putExtra("UserModel", userModel);
         startActivity(i);
     }
 }

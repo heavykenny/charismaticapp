@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.charismaticapp.R;
-import com.example.charismaticapp.data.OtherPageData;
+import com.example.charismaticapp.models.OtherPagesModel;
 import com.example.charismaticapp.adapters.OtherPageRecyclerViewAdapter;
-import com.example.charismaticapp.data.UserData;
+import com.example.charismaticapp.models.UserModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,29 +25,29 @@ public class OtherActivity extends AppCompatActivity {
         setContentView(R.layout.activity_other);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Other Applications");
 
-        List<OtherPageData> data = fill_with_data();
+        List<OtherPagesModel> otherPagesModelList = getOtherPagesData();
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        OtherPageRecyclerViewAdapter adapter = new OtherPageRecyclerViewAdapter(data, getApplication());
+        OtherPageRecyclerViewAdapter adapter = new OtherPageRecyclerViewAdapter(otherPagesModelList, getApplicationContext());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
 
-    public List<OtherPageData> fill_with_data() {
-        List<OtherPageData> data = new ArrayList<>();
-        data.add(new OtherPageData("Calculator App", R.drawable.calculate));
-        data.add(new OtherPageData("Background Changer", R.drawable.wallpaper));
-        data.add(new OtherPageData("Dice Roller", R.drawable.casino));
-        return data;
+    public List<OtherPagesModel> getOtherPagesData() {
+        List<OtherPagesModel> otherPagesModelList = new ArrayList<>();
+        otherPagesModelList.add(new OtherPagesModel("CalculatorController App", R.drawable.calculate));
+        otherPagesModelList.add(new OtherPagesModel("Background Changer", R.drawable.wallpaper));
+        otherPagesModelList.add(new OtherPagesModel("Dice Roller", R.drawable.casino));
+        return otherPagesModelList;
     }
 
-    public void openOtherActivity(String itemName, Context appContext) {
+    public void openOtherActivity(String pageName, Context appContext) {
 
-        switch (itemName) {
-            case "Calculator App":
-                Intent intent = new Intent(appContext, CalculatorActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                appContext.startActivity(intent);
+        switch (pageName) {
+            case "CalculatorController App":
+                Intent i = new Intent(appContext, CalculatorActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                appContext.startActivity(i);
                 break;
             default:
                 break;
@@ -56,11 +56,11 @@ public class OtherActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        UserData userData = getIntent().getParcelableExtra("UserData");
+        UserModel userModel = getIntent().getParcelableExtra("UserModel");
         Intent i = new Intent(this, HomeScreenActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        i.setExtrasClassLoader(UserData.class.getClassLoader());
-        i.putExtra("UserData", userData);
+        i.setExtrasClassLoader(UserModel.class.getClassLoader());
+        i.putExtra("UserModel", userModel);
         startActivity(i);
     }
 }

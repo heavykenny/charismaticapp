@@ -2,18 +2,20 @@ package com.example.charismaticapp.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.charismaticapp.R;
+import com.example.charismaticapp.models.UserModel;
 
 public class OverallActivity extends AppCompatActivity {
     Button btnGoHome;
     Button btnSaveScore;
     TextView txtOverAllScore;
+
+    UserModel userModel;
 
     @Override
     public void onBackPressed() {
@@ -27,7 +29,7 @@ public class OverallActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_overall);
         Double overAll = getIntent().getDoubleExtra("OverAll", 0.0);
-
+        userModel = getIntent().getParcelableExtra("UserModel");
         btnGoHome = findViewById(R.id.btnGoHome);
         btnSaveScore = findViewById(R.id.btnSaveScore);
 
@@ -37,6 +39,8 @@ public class OverallActivity extends AppCompatActivity {
 
         btnGoHome.setOnClickListener(v -> {
             Intent homeActivity = new Intent(OverallActivity.this, HomeScreenActivity.class);
+            homeActivity.setExtrasClassLoader(UserModel.class.getClassLoader());
+            homeActivity.putExtra("UserModel", userModel);
             // https://developer.android.com/reference/android/content/Intent#FLAG_ACTIVITY_NO_HISTORY
             startActivity(homeActivity);
         });
