@@ -92,4 +92,8 @@ public class UserModel implements Parcelable {
         dest.writeInt(id);
         dest.writeString(password);
     }
+
+    public String getFullName() {
+        return this.firstName + " " + this.lastName;
+    }
 }

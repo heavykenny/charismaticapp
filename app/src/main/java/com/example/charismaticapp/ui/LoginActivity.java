@@ -1,8 +1,6 @@
 package com.example.charismaticapp.ui;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -15,20 +13,17 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.charismaticapp.MainActivity;
 import com.example.charismaticapp.R;
-import com.example.charismaticapp.models.UserModel;
 import com.example.charismaticapp.logics.UserController;
-import com.example.charismaticapp.states.SaveDataState;
+import com.example.charismaticapp.models.UserModel;
+import com.example.charismaticapp.states.CacheManagement;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
-    private List<UserModel> userData;
-    SharedPreferences sharedPreferences;
     UserController userControllerClass;
-
+    private List<UserModel> userData;
 
     public static List<UserModel> createDummyUserData() {
         List<UserModel> data = new ArrayList<>();
@@ -51,13 +46,13 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        sharedPreferences = getApplicationContext().getSharedPreferences("charismatic_cache", Context.MODE_PRIVATE);
         userData = createDummyUserData();
         userControllerClass = new UserController(userData);
 
-        String cacheUserName = sharedPreferences.getString("username", null);
+        CacheManagement cm = new CacheManagement(getApplicationContext());
+        String cacheUserName = cm.readData("username");
 
-        if (cacheUserName != null){
+        if (cacheUserName != null) {
             Intent intent = new Intent(LoginActivity.this, HomeScreenActivity.class);
             // REFERENCE - https://stackoverflow.com/a/39078856/9332871
             intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
@@ -66,6 +61,7 @@ public class LoginActivity extends AppCompatActivity {
             intent.putExtra("UserModel", userModel);
             startActivity(intent);
         }
+
         TextView txtSignedUp = findViewById(R.id.txtSignedUp);
         SpannableString spannableString = new SpannableString("Don't have an account? Sign up here");
 
@@ -101,10 +97,9 @@ public class LoginActivity extends AppCompatActivity {
 
         if (userControllerClass.login(edtUsername.getText().toString(), edtPassword.getText().toString())) {
             UserModel userModel = userControllerClass.getUserByUsername(edtUsername.getText().toString());
-            SharedPreferences.Editor editor = sharedPreferences.edit();
 
-            editor.putString("username", userModel.getUsername());
-            editor.apply();
+            CacheManagement cm = new CacheManagement(getApplicationContext());
+            cm.saveData("username", userModel.getUsername());
 
             Intent intent = new Intent(LoginActivity.this, HomeScreenActivity.class);
             // REFERENCE - https://stackoverflow.com/a/39078856/9332871
@@ -122,5 +117,4 @@ public class LoginActivity extends AppCompatActivity {
     public void onBackPressed() {
         this.moveTaskToBack(true);
     }
-
 }

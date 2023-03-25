@@ -1,14 +1,15 @@
 package com.example.charismaticapp.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.charismaticapp.R;
 import com.example.charismaticapp.models.UserModel;
+import com.example.charismaticapp.states.CacheManagement;
 
 public class HomeScreenActivity extends AppCompatActivity {
 
@@ -19,39 +20,60 @@ public class HomeScreenActivity extends AppCompatActivity {
         UserModel userModel = getIntent().getParcelableExtra("UserModel");
 
         TextView username = findViewById(R.id.txtName);
-        username.setText("Welcome, "+ userModel.getLastName() + "!");
+        username.setText("Welcome, " + userModel.getLastName() + "!");
     }
 
     public void showOtherActivity(View view) {
-        Intent intent = new Intent(HomeScreenActivity.this, OtherActivity.class);
+        Intent i = new Intent(HomeScreenActivity.this, OtherActivity.class);
         // REFERENCE - https://stackoverflow.com/a/39078856/9332871
-        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        startActivity(intent);
+        i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(i);
     }
 
     public void showQuizActivity(View view) {
-        Intent intent = new Intent(view.getContext(), QuizActivity.class);
+        Intent i = new Intent(view.getContext(), QuizActivity.class);
         // REFERENCE - https://stackoverflow.com/a/39078856/9332871
-        intent.setExtrasClassLoader(UserModel.class.getClassLoader());
+        i.setExtrasClassLoader(UserModel.class.getClassLoader());
         UserModel userModel = getIntent().getParcelableExtra("UserModel");
-        intent.setExtrasClassLoader(UserModel.class.getClassLoader());
-        intent.putExtra("UserModel", userModel);
-        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        startActivity(intent);
+        i.putExtra("UserModel", userModel);
+        i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(i);
     }
 
     public void showNoteActivity(View view) {
-        Intent intent = new Intent(view.getContext(), NoteActivity.class);
-        intent.setExtrasClassLoader(UserModel.class.getClassLoader());
+        Intent i = new Intent(view.getContext(), NoteActivity.class);
+        i.setExtrasClassLoader(UserModel.class.getClassLoader());
         UserModel userModel = getIntent().getParcelableExtra("UserModel");
-        intent.putExtra("UserModel", userModel);
+        i.putExtra("UserModel", userModel);
         // REFERENCE - https://stackoverflow.com/a/39078856/9332871
-        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        startActivity(intent);
+        i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(i);
+    }
+
+
+    public void showSettingActivity(View view) {
+        Intent i = new Intent(view.getContext(), SettingsActivity.class);
+        i.setExtrasClassLoader(UserModel.class.getClassLoader());
+        UserModel userModel = getIntent().getParcelableExtra("UserModel");
+        i.putExtra("UserModel", userModel);
+        // REFERENCE - https://stackoverflow.com/a/39078856/9332871
+        i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(i);
     }
 
     @Override
     public void onBackPressed() {
         this.moveTaskToBack(true);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        CacheManagement cm = new CacheManagement(getApplicationContext());
+        String cacheUserName = cm.readData("username");
+        if (cacheUserName == null) {
+            finish();
+        }
     }
 }

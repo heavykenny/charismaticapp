@@ -67,6 +67,7 @@
                 android:layout_weight="1">
 
                 <Button
+                    android:onClick="showSettingActivity"
                     style="@style/button_homepage"
                     android:layout_width="300dp"
                     android:layout_height="600dp"
