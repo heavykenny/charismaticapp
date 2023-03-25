@@ -16,10 +16,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.example.charismaticapp.R;
+import com.example.charismaticapp.logics.UtilClass;
 import com.example.charismaticapp.models.QuestionModel;
 import com.example.charismaticapp.models.QuizAnswerModel;
 import com.example.charismaticapp.models.UserModel;
-import com.example.charismaticapp.logics.UtilClass;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -81,16 +81,15 @@ public class QuestionActivity extends AppCompatActivity {
             if (radGrpAnswers.getCheckedRadioButtonId() == -1) {
                 Toast.makeText(this, "Please select an option!", Toast.LENGTH_SHORT).show();
             } else {
-                QuestionModel question = questionModelList.get(currentQuestionIndex);
-                int selectedId = radGrpAnswers.getCheckedRadioButtonId();
-                RadioButton selectedRadioButton = findViewById(selectedId);
-                quizAnswerModelList.add(new QuizAnswerModel(userModel.getId(), question.getId(), selectedRadioButton.getText().toString()));
+                userSelectedQuestion();
                 currentQuestionIndex++;
                 updateQuestion();
             }
         });
 
         btnSubmit.setOnClickListener(v -> {
+            userSelectedQuestion();
+
             Intent overallIntent = new Intent(QuestionActivity.this, OverallActivity.class);
             overallIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             overallIntent.setExtrasClassLoader(UserModel.class.getClassLoader());
@@ -98,6 +97,13 @@ public class QuestionActivity extends AppCompatActivity {
             overallIntent.putExtra("OverAll", checkAnswer(questionModelList, quizAnswerModelList));
             startActivity(overallIntent);
         });
+    }
+
+    private void userSelectedQuestion() {
+        int selectedId = radGrpAnswers.getCheckedRadioButtonId();
+        QuestionModel question = questionModelList.get(currentQuestionIndex);
+        RadioButton selectedRadioButton = findViewById(selectedId);
+        quizAnswerModelList.add(new QuizAnswerModel(userModel.getId(), question.getId(), selectedRadioButton.getText().toString()));
     }
 
     private void updateQuestion() {

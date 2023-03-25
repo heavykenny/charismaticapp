@@ -12,7 +12,7 @@ import androidx.cardview.widget.CardView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.charismaticapp.adapters.OnboardingSplashPageAdapter;
-import com.example.charismaticapp.states.SaveState;
+import com.example.charismaticapp.states.SaveDataState;
 import com.example.charismaticapp.ui.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     ViewPager viewPager;
 
     TextView[] dots;
-    SaveState saveState;
+    SaveDataState saveDataState;
 
     int currentPosition;
     ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 nextCard.setOnClickListener(view -> viewPager.setCurrentItem(currentPosition + 1));
             } else {
                 nextCard.setOnClickListener(view -> {
-                    saveState.setState(1);
+                    saveDataState.setState(1);
                     Intent i = new Intent(MainActivity.this, LoginActivity.class);
                     startActivity(i);
                     finish();
@@ -63,8 +63,8 @@ public class MainActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.slider);
 
         dotsFunction(0);
-        saveState = new SaveState(MainActivity.this, "OB");
-        if (saveState.getState() == 1) {
+        saveDataState = new SaveDataState(MainActivity.this, "OB");
+        if (saveDataState.getState() == 1) {
             Intent i = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(i);
             finish();

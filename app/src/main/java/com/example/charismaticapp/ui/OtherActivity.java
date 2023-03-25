@@ -44,7 +44,7 @@ public class OtherActivity extends AppCompatActivity {
     public void openOtherActivity(String pageName, Context appContext) {
 
         switch (pageName) {
-            case "CalculatorController App":
+            case "Calculator App":
                 Intent i = new Intent(appContext, CalculatorActivity.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 appContext.startActivity(i);

@@ -3,13 +3,13 @@ package com.example.charismaticapp.states;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-public class SaveState {
+public class SaveDataState {
 
     Context appContext;
     String saveName;
     SharedPreferences sp;
 
-    public SaveState(Context appContext, String saveName) {
+    public SaveDataState(Context appContext, String saveName) {
         this.appContext = appContext;
         this.saveName = saveName;
         sp = appContext.getSharedPreferences(saveName, appContext.MODE_PRIVATE);
