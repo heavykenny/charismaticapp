@@ -94,6 +94,6 @@ public class UserModel implements Parcelable {
     }
 
     public String getFullName() {
-        return this.firstName + " " + this.lastName;
+        return this.lastName + " " + this.firstName;
     }
 }
