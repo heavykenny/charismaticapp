@@ -38,8 +38,8 @@ public class TestListRecyclerViewAdapter extends RecyclerView.Adapter<TestListRe
 
     @Override
     public void onBindViewHolder(@NonNull TestListRecyclerViewAdapter.ViewHolder holder, int index) {
-        holder.txtTitle.setText(testListModelList.get(index).name);
-        holder.txtCount.setText(testListModelList.get(index).count + " questions");
+        holder.txtTitle.setText(testListModelList.get(index).getName());
+        holder.txtCount.setText(testListModelList.get(index).getCount() + " questions");
     }
 
     @Override

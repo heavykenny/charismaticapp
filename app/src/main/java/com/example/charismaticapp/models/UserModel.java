@@ -17,11 +17,11 @@ public class UserModel implements Parcelable {
             return new UserModel[size];
         }
     };
-    String username;
-    String firstName;
-    String lastName;
-    int id;
-    String password;
+    private String username;
+    private String firstName;
+    private String lastName;
+    private int id;
+    private String password;
 
     public UserModel(String sureName, String lastName, String username, int id, String password) {
         this.username = username;
@@ -32,15 +32,14 @@ public class UserModel implements Parcelable {
     }
 
     protected UserModel(Parcel in) {
-        username = in.readString();
-        firstName = in.readString();
-        lastName = in.readString();
-        id = in.readInt();
-        password = in.readString();
+        this.firstName = in.readString();
+        this.lastName = in.readString();
+        this.id = in.readInt();
+        this.password = in.readString();
     }
 
     public String getUsername() {
-        return username;
+        return this.username;
     }
 
     public void setUsername(String username) {
@@ -48,7 +47,7 @@ public class UserModel implements Parcelable {
     }
 
     public String getFirstName() {
-        return firstName;
+        return this.firstName;
     }
 
     public void setFirstName(String firstName) {
@@ -56,7 +55,7 @@ public class UserModel implements Parcelable {
     }
 
     public String getLastName() {
-        return lastName;
+        return this.lastName;
     }
 
     public void setLastName(String lastName) {
@@ -64,7 +63,7 @@ public class UserModel implements Parcelable {
     }
 
     public int getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(int id) {
@@ -94,6 +93,6 @@ public class UserModel implements Parcelable {
     }
 
     public String getFullName() {
-        return this.firstName + " " + this.lastName;
+        return this.lastName + " " + this.firstName;
     }
 }

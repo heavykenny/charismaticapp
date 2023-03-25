@@ -14,7 +14,6 @@ public class QuestionModel {
     private final String answer;
     private String imageURL;
     private String videoUrl;
-
     private String id;
     private String testId;
 
