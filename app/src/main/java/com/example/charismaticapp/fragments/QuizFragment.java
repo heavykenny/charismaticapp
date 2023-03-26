@@ -48,6 +48,7 @@ public class QuizFragment extends Fragment implements QuizCategoryFragmentAdapte
     }
 
     private void getAllCategories() {
+        // REFERENCE: https://stackoverflow.com/a/60710298/9332871
         Gson gson = new Gson();
         String jsonString = utilClass.getJsonFromStorage("questions.json", appContext);
         quizCategoryModelList = gson.fromJson(jsonString, new TypeToken<List<QuizCategoryModel>>() {

@@ -25,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
     SaveDataState saveDataState;
 
     int currentPosition;
+
+    // REFERENCES: https://developer.android.com/develop/ui/views/animations/screen-slide
+    // REFERENCES: https://youtu.be/gTzcHWfbEXw
     ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -38,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 nextCard.setOnClickListener(view -> viewPager.setCurrentItem(currentPosition + 1));
             } else {
                 nextCard.setOnClickListener(view -> {
+                    // save data in the cache
                     saveDataState.setState(1);
                     Intent i = new Intent(MainActivity.this, LoginActivity.class);
                     startActivity(i);
@@ -79,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // REFERENCES: https://developer.android.com/develop/ui/views/animations/screen-slide
+    // REFERENCES: https://youtu.be/gTzcHWfbEXw
     private void dotsFunction(int pos) {
         dots = new TextView[3];
         dotsLayout.removeAllViews();
@@ -86,14 +92,14 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < dots.length; i++) {
             dots[i] = new TextView(this);
             dots[i].setText(Html.fromHtml("•"));
-            dots[i].setTextColor(getColor(R.color.white));   //this is the non selection color
+            dots[i].setTextColor(getColor(R.color.white));
             dots[i].setTextSize(30);
             dotsLayout.addView(dots[i]);
         }
 
         if (dots.length > 0) {
-            dots[pos].setTextColor(getColor(R.color.teal_700));  //this is the selection color
-            dots[pos].setTextSize(40);  //this is the selection size
+            dots[pos].setTextColor(getColor(R.color.teal_700));
+            dots[pos].setTextSize(40);
         }
     }
 }

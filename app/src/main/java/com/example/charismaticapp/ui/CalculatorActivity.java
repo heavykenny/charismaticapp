@@ -24,7 +24,7 @@ public class CalculatorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
 
-        Objects.requireNonNull(getSupportActionBar()).setTitle("CalculatorController App");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Calculator App");
     }
 
     public void ButtonClick(View view) {

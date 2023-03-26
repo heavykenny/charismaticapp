@@ -54,6 +54,7 @@ public class NoteActivity extends AppCompatActivity {
         addFab.setOnClickListener(v -> {
             String currentDateTime = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.getDefault()).format(new Date());
             String fileName = userModel.getUsername() + "-" + currentDateTime + ".txt";
+            // create note
             NoteModel newNote = noteControllerClass.createNote(fileName, "Sample Text", NoteActivity.this);
             noteModelList.add(0, newNote);
             adapter.notifyItemRangeInserted(0, 1);
@@ -62,10 +63,12 @@ public class NoteActivity extends AppCompatActivity {
     }
 
     private void updateList() {
+        // update notes
         noteModelList = noteControllerClass.readAllNotes(NoteActivity.this);
     }
 
     public void viewNoteDetails(Context appContext, String fileName, UserModel userModel) {
+        // move to view note activity
         Intent i = new Intent(appContext, ViewNoteActivity.class);
         i.putExtra("fileName", fileName);
         i.setExtrasClassLoader(UserModel.class.getClassLoader());
@@ -75,6 +78,7 @@ public class NoteActivity extends AppCompatActivity {
     }
 
     public void deleteNoteDetails(Context appContext, String fileName) {
+        // delete note
         noteControllerClass.deleteNote(appContext, fileName);
         Toast.makeText(appContext, "Note Deleted ", Toast.LENGTH_SHORT).show();
     }

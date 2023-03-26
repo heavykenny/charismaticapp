@@ -17,6 +17,7 @@ import com.example.charismaticapp.ui.OtherActivity;
 import java.util.List;
 
 
+// REFERENCE: https://developer.android.com/develop/ui/views/layout/recyclerview
 public class OtherPageRecyclerViewAdapter extends RecyclerView.Adapter<OtherPageRecyclerViewAdapter.ViewHolder> {
 
     List<OtherPagesModel> otherPagesModelList;

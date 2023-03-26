@@ -62,6 +62,7 @@ public class StartQuestionActivity extends AppCompatActivity {
 
     public TestListModel getTestData(String testId) {
         TestListModel data = null;
+        // REFERENCE: https://stackoverflow.com/a/60710298/9332871
         Gson gson = new Gson();
         String jsonString = utilClass.getJsonFromStorage("testList.json", getApplicationContext());
         Type type = new TypeToken<List<TestListModel>>() {

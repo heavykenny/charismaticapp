@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+// REFERENCES: https://developer.android.com/reference/android/os/Parcelable
 public class UserModel implements Parcelable {
     public static final Creator<UserModel> CREATOR = new Creator<UserModel>() {
         @Override

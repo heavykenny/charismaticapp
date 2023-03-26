@@ -22,6 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+// REFERENCE: https://developer.android.com/develop/ui/views/layout/recyclerview
 public class NoteListRecyclerViewAdapter extends RecyclerView.Adapter<NoteListRecyclerViewAdapter.ViewHolder> {
 
     List<NoteModel> noteModelList;

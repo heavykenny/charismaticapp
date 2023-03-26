@@ -11,6 +11,7 @@ import com.example.charismaticapp.models.QuizCategoryModel;
 
 import java.util.List;
 
+// REFERENCE: https://developer.android.com/guide/fragments/create
 public class QuizCategoryFragmentAdapter extends BaseAdapter implements View.OnClickListener {
     private final List<QuizCategoryModel> quizCategoryModelList;
     private final OnQuizCategoryClickListener onQuizCategoryClickListener;

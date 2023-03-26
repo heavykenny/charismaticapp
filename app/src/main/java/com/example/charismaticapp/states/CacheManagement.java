@@ -4,6 +4,7 @@ package com.example.charismaticapp.states;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+// REFERENCES: https://developer.android.com/training/data-storage/shared-preferences
 public class CacheManagement {
     Context appContext;
     SharedPreferences sharedPreferences;

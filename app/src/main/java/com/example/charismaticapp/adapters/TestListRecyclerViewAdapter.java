@@ -17,6 +17,7 @@ import com.example.charismaticapp.ui.StartQuestionActivity;
 
 import java.util.List;
 
+// REFERENCE: https://developer.android.com/develop/ui/views/layout/recyclerview
 public class TestListRecyclerViewAdapter extends RecyclerView.Adapter<TestListRecyclerViewAdapter.ViewHolder> {
     List<TestListModel> testListModelList;
 

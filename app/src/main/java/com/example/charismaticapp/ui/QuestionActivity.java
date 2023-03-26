@@ -78,9 +78,11 @@ public class QuestionActivity extends AppCompatActivity {
         });
 
         btnNext.setOnClickListener(v -> {
+            // validate an option is selected
             if (radGrpAnswers.getCheckedRadioButtonId() == -1) {
                 Toast.makeText(this, "Please select an option!", Toast.LENGTH_SHORT).show();
             } else {
+                // display question
                 userSelectedQuestion();
                 currentQuestionIndex++;
                 updateQuestion();
@@ -100,6 +102,7 @@ public class QuestionActivity extends AppCompatActivity {
     }
 
     private void userSelectedQuestion() {
+        // track the selected question to mark at the end of the quiz
         int selectedId = radGrpAnswers.getCheckedRadioButtonId();
         QuestionModel question = questionModelList.get(currentQuestionIndex);
         RadioButton selectedRadioButton = findViewById(selectedId);
@@ -113,10 +116,13 @@ public class QuestionActivity extends AppCompatActivity {
 
         QuestionModel question = questionModelList.get(currentQuestionIndex);
 
+        // conditional rendering of question based on the type of the question
         switch (question.getType()) {
             case QuestionModel.TYPE_IMAGE:
                 imgQuestion.setVisibility(View.VISIBLE);
                 vidQuestion.setVisibility(View.GONE);
+                // load the image from url using glide
+
                 Glide.with(getApplicationContext()).load(question.getImageURL()).into(imgQuestion);
                 break;
             case QuestionModel.TYPE_VIDEO:

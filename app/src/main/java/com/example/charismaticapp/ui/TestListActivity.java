@@ -46,6 +46,7 @@ public class TestListActivity extends AppCompatActivity {
 
     private List<TestListModel> fill_with_data() {
         List<TestListModel> data;
+        // REFERENCE: https://stackoverflow.com/a/60710298/9332871
         Gson gson = new Gson();
         String jsonString = utilClass.getJsonFromStorage("testList.json", getApplicationContext());
         Type type = new TypeToken<List<TestListModel>>() {

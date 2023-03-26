@@ -13,6 +13,8 @@ import androidx.viewpager.widget.PagerAdapter;
 
 import com.example.charismaticapp.R;
 
+// REFERENCES: https://developer.android.com/develop/ui/views/animations/screen-slide
+// REFERENCES: https://youtu.be/gTzcHWfbEXw
 public class OnboardingSplashPageAdapter extends PagerAdapter {
 
     Context appContext;
