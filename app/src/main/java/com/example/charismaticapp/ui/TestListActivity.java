@@ -36,7 +36,7 @@ public class TestListActivity extends AppCompatActivity {
 
         titleTextView = findViewById(R.id.txtNote);
         titleTextView.setText(utilClass.capitalizeFirstCharacter(quizCategoryModel.getCatId() + " Tests"));
-        List<TestListModel> data = fill_with_data();
+        List<TestListModel> data = fillWithData();
 
         RecyclerView rvTestList = findViewById(R.id.rvTestList);
         TestListRecyclerViewAdapter adapter = new TestListRecyclerViewAdapter(data, getApplicationContext(), userModel);
@@ -44,7 +44,7 @@ public class TestListActivity extends AppCompatActivity {
         rvTestList.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    private List<TestListModel> fill_with_data() {
+    private List<TestListModel> fillWithData() {
         List<TestListModel> data;
         // REFERENCE: https://stackoverflow.com/a/60710298/9332871
         Gson gson = new Gson();

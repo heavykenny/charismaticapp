@@ -29,8 +29,8 @@ public class LoginActivity extends AppCompatActivity {
         List<UserModel> data = new ArrayList<>();
 
         data.add(new UserModel("Doe", "Johnson", "john", 1234, "pass"));
-        data.add(new UserModel("Smith", "Anderson", "jane34", 5678, "abc456"));
-        data.add(new UserModel("Brown", "Williams", "mike56", 9012, "xyz789"));
+        data.add(new UserModel("Smith", "Anderson", "jane", 5678, "abc"));
+        data.add(new UserModel("Brown", "Williams", "mike", 9012, "xyz"));
         data.add(new UserModel("Lee", "Taylor", "sarah78", 3456, "qwerty12"));
         data.add(new UserModel("Jones", "Davis", "david90", 7890, "p@ssw0rd"));
         data.add(new UserModel("Taylor", "Moore", "lisa12", 2345, "letmein1"));
@@ -54,8 +54,8 @@ public class LoginActivity extends AppCompatActivity {
 
         if (cacheUserName != null) {
             Intent intent = new Intent(LoginActivity.this, HomeScreenActivity.class);
-            // REFERENCE - https://stackoverflow.com/a/39078856/9332871
-            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            // REFERENCE - https://stackoverflow.com/a/34525373/9332871
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             intent.setExtrasClassLoader(UserModel.class.getClassLoader());
             UserModel userModel = userControllerClass.getUserByUsername(cacheUserName);
             intent.putExtra("UserModel", userModel);
@@ -70,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View widget) {
                 // Handle click event
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                // REFERENCE - https://stackoverflow.com/a/39078856/9332871
+                // REFERENCE - https://stackoverflow.com/a/34525373/9332871
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
             }
@@ -100,10 +100,9 @@ public class LoginActivity extends AppCompatActivity {
 
             CacheManagement cm = new CacheManagement(getApplicationContext());
             cm.saveData("username", userModel.getUsername());
-
             Intent intent = new Intent(LoginActivity.this, HomeScreenActivity.class);
             // REFERENCE - https://stackoverflow.com/a/39078856/9332871
-            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             intent.setExtrasClassLoader(UserModel.class.getClassLoader());
             intent.putExtra("UserModel", userModel);
             startActivity(intent);

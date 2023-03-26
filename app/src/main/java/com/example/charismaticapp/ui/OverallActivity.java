@@ -20,7 +20,11 @@ public class OverallActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent availableQuiz = new Intent(OverallActivity.this, QuizActivity.class);
-        // https://developer.android.com/reference/android/content/Intent#FLAG_ACTIVITY_NO_HISTORY
+        // REFERENCE - https://stackoverflow.com/a/39078856/9332871
+        availableQuiz.setExtrasClassLoader(UserModel.class.getClassLoader());
+        UserModel userModel = getIntent().getParcelableExtra("UserModel");
+        availableQuiz.putExtra("UserModel", userModel);
+        availableQuiz.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(availableQuiz);
     }
 
@@ -42,7 +46,7 @@ public class OverallActivity extends AppCompatActivity {
             homeActivity.setExtrasClassLoader(UserModel.class.getClassLoader());
             homeActivity.putExtra("UserModel", userModel);
             // https://developer.android.com/reference/android/content/Intent#FLAG_ACTIVITY_NO_HISTORY
-            homeActivity.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            homeActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(homeActivity);
         });
 
